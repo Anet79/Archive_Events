@@ -1,7 +1,9 @@
 package com.anet.archiveevents.view;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -68,5 +70,12 @@ public class AddComplineFragment extends Fragment {
         add_compline_EDT_details = view.findViewById(R.id.add_compline_EDT_details);
         add_compline_BTN_save = view.findViewById(R.id.add_compline_BTN_save);
         navController = Navigation.findNavController(view);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_add_compline_screen, container, false);
     }
 }
