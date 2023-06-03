@@ -36,7 +36,7 @@ public class DairyEventRepository {
         myEvents=new MutableLiveData<>();
         allEvents=new ArrayList<>();
         allMyEvents=new ArrayList<>();
-    //   initAllEventsArray();
+      // initAllEventsArray();
         // eventOnClicked=(EventItemClicked) context;
 
     }
@@ -67,23 +67,24 @@ public class DairyEventRepository {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         allEvents.add(snapshot.getValue(Event.class));
+                        continue;
 
                     }
+
+
+
+
+
+
+
+
+
+
                     events.setValue(allEvents);
-
-
-
-
-                    for (int i = 0; i <allEvents.size() ; i++) {
-                        Log.d("allEvents",allEvents.get(i).toString());
-                    }
-
-
-
-                    //eventOnClicked.eventClicked();
-
                 }
+
             }
+
 
         });
 
@@ -106,7 +107,10 @@ public class DairyEventRepository {
                         }
 
 
+
                     }
+                    myEvents.setValue(allMyEvents);
+
 
 
                 }

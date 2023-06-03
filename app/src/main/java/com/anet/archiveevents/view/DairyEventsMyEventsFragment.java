@@ -1,6 +1,9 @@
 package com.anet.archiveevents.view;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,17 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.adapters.EventsAdapter;
+import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
+import com.google.android.material.tabs.TabLayout;
 
-
-public class NewDairyEventsFragment extends Fragment {
+public class DairyEventsMyEventsFragment extends Fragment {
 
     private RecyclerView news_page_RECYC_reports;
     private DairyEventViewModel dairyEventViewModel;
@@ -30,7 +31,6 @@ public class NewDairyEventsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -53,7 +53,7 @@ public class NewDairyEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_new_dairy_events, container, false);
+        View view= inflater.inflate(R.layout.fragment_dairy_events_my_events, container, false);
         findViews(view);
 
         news_page_RECYC_reports.setLayoutManager(new LinearLayoutManager(this.getContext()));

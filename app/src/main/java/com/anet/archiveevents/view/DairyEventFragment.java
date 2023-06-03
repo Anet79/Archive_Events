@@ -26,10 +26,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
 
 
-public class DairyEventFragment extends Fragment implements EventItemClicked {
+public class DairyEventFragment extends Fragment  {
 
-    private RecyclerView news_page_RECYC_reports_1;
-    private RecyclerView news_page_RECYC_reports;
+    private RecyclerView news_page_RECYC_reports_2;
 
     private DairyEventViewModel dairyEventViewModel;
     private EventsAdapter eventsAdapter;
@@ -40,22 +39,22 @@ public class DairyEventFragment extends Fragment implements EventItemClicked {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dairyEventViewModel=new ViewModelProvider(this).get(DairyEventViewModel.class);
-
-        dairyEventViewModel.getAllEventsData().observe(this, new Observer<ArrayList<Event>>() {
-            @Override
-            public void onChanged(ArrayList<Event> events) {
-                eventsAdapter.setEvents(events);
-
-            }
-        });
-        dairyEventViewModel.getAllMyEventsData().observe(this, new Observer<ArrayList<Event>>() {
-            @Override
-            public void onChanged(ArrayList<Event> events) {
-                eventsAdapter.setEvents(events);
-
-            }
-        });
+//        dairyEventViewModel=new ViewModelProvider(this).get(DairyEventViewModel.class);
+//
+//        dairyEventViewModel.getAllEventsData().observe(this, new Observer<ArrayList<Event>>() {
+//            @Override
+//            public void onChanged(ArrayList<Event> events) {
+//                eventsAdapter.setEvents(events);
+//
+//            }
+//        });
+//        dairyEventViewModel.getAllMyEventsData().observe(this, new Observer<ArrayList<Event>>() {
+//            @Override
+//            public void onChanged(ArrayList<Event> events) {
+//                eventsAdapter.setEvents(events);
+//
+//            }
+//        });
 
 
     }
@@ -64,12 +63,18 @@ public class DairyEventFragment extends Fragment implements EventItemClicked {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
+        dairyEventViewModel.getAllEventsData().observe(getViewLifecycleOwner(), events -> {
+            // Update the adapter with the new data
+            eventsAdapter.setEvents(events);
+        });
+
 
     }
 
     private void findViews(View view) {
-        news_page_RECYC_reports_1= view.findViewById(R.id.news_page_RECYC_reports_1);
-        news_page_RECYC_reports= view.findViewById(R.id.news_page_RECYC_reports);
+      //  news_page_RECYC_reports_1= view.findViewById(R.id.news_page_RECYC_reports_1);
+        news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
     }
 
     @Override
@@ -78,22 +83,22 @@ public class DairyEventFragment extends Fragment implements EventItemClicked {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
         findViews(view);
-        news_page_RECYC_reports_1.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        news_page_RECYC_reports_1.setHasFixedSize(true);
+//        news_page_RECYC_reports_1.setLayoutManager(new LinearLayoutManager(this.getContext()));
+//        news_page_RECYC_reports_1.setHasFixedSize(true);
 
-        news_page_RECYC_reports.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        news_page_RECYC_reports.setHasFixedSize(true);
+        news_page_RECYC_reports_2.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        news_page_RECYC_reports_2.setHasFixedSize(true);
 
         eventsAdapter= new EventsAdapter();
 
-        news_page_RECYC_reports_1.setAdapter(eventsAdapter);
-        news_page_RECYC_reports.setAdapter(eventsAdapter);
+       // news_page_RECYC_reports_1.setAdapter(eventsAdapter);
+        news_page_RECYC_reports_2.setAdapter(eventsAdapter);
         return view;
     }
 
 
-    @Override
-    public void eventClicked(Event event, int position) {
-        eventsAdapter.notifyDataSetChanged();
-    }
+//    @Override
+//    public void eventClicked(Event event, int position) {
+//        eventsAdapter.notifyDataSetChanged();
+//    }
 }

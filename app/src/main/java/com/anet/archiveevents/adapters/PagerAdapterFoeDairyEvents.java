@@ -11,6 +11,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.anet.archiveevents.view.DairyEventFragment;
+import com.anet.archiveevents.view.DairyEventsMyEventsFragment;
+import com.anet.archiveevents.view.DairyEventsMyFavoritesFragment;
 import com.anet.archiveevents.view.NewDairyEventsFragment;
 
 public class PagerAdapterFoeDairyEvents extends FragmentStateAdapter {
@@ -23,27 +25,18 @@ public class PagerAdapterFoeDairyEvents extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Fragment eventsDairyFragment= new NewDairyEventsFragment();
-        Bundle bundle = new Bundle();
 
         // Pass the array type based on the position
         switch (position) {
             case 0:
-                bundle.putString("arrayType", "myFavoriteEvent");
-                break;
+                return new DairyEventFragment();
+
             case 1:
-                bundle.putString("arrayType", "myEvent");
-                break;
-            case 2:
-                bundle.putString("arrayType", "allEvents");
-                break;
+                return new DairyEventsMyEventsFragment();
+
         }
+        return new DairyEventsMyFavoritesFragment();
 
-        eventsDairyFragment.setArguments(bundle);
-
-
-
-        return eventsDairyFragment;
     }
 
     @Override

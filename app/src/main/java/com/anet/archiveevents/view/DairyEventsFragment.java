@@ -70,22 +70,22 @@ public class DairyEventsFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
 
-                // Pass the array type based on the position
-                switch (tab.getPosition()) {
-                    case 0:
-                        dairyEventViewModel.getEventList("0");
-
-                        break;
-                    case 1:
-                        dairyEventViewModel.getEventList("1");
-
-                        break;
-                    case 2:
-
-//                        dairyEventViewModel.getEventList("2");
-
-                        break;
-                }
+//                // Pass the array type based on the position
+//                switch (tab.getPosition()) {
+//                    case 0:
+//                        dairyEventViewModel.getEventList("0");
+//
+//                        break;
+//                    case 1:
+//                        dairyEventViewModel.getEventList("1");
+//
+//                        break;
+//                    case 2:
+//
+////                        dairyEventViewModel.getEventList("2");
+//
+//                        break;
+//                }
             }
 
             @Override
