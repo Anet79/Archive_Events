@@ -11,4 +11,9 @@
     <color name="stroke_color_for_profile">#6385B6</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="color_for_login_fields">#6B95C3</color>
+    <color name="nice_color_dark_grey">#526D82</color>
+    <color name="nice_color_light_grey">#9DB2BF</color>
+   <!-- <color name="nice_color_light_grey">#9DB2BF</color>
+    <color name="nice_color_light_grey">#9DB2BF</color>
+    <color name="nice_color_light_grey">#9DB2BF</color>-->
 </resources>
