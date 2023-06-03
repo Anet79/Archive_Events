@@ -69,6 +69,15 @@
 
     <string name="my_map_api_kay">AIzaSyDd7PEkW8E38CHtasDUQNrQd5yinvXnr4U</string>
 
+    <!--add compline-->
+
+    <string name="name_compline">שם מלא </string>
+    <string name="mail_compline">אימייל </string>
+    <string name="title_compline">כותרת </string>
+    <string name="content_compline">תוכן הדיווח</string>
+    <string name="submit">אישור</string>
+
+
 
 
 

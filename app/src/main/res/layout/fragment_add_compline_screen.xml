@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:clipToOutline="true"
+    android:supportsRtl="true"
+    tools:ignore="RtlEnabled"
+
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/background_for_connect"
+            android:elevation="80dp"
+            android:orientation="vertical"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,RtlSymmetry">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,RtlSymmetry">
+
+                <LinearLayout
+                    android:id="@+id/add_event_LRT_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_weight="1"
+                        android:elevation="40dp"
+
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/color_for_login_fields"
+                        app:strokeWidth="2dp">
+
+                        <!-- Rectangle 1 -->
+                        <EditText
+                            android:id="@+id/add_compline_EDT_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:textStyle="normal"
+
+                            android:textColorHint="@color/black"
+                            android:hint="@string/mail_compline"
+                            android:padding="15dp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="100dp"
+
+                        app:strokeWidth="2dp"
+
+
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1"
+                        app:strokeColor="@color/color_for_login_fields"
+                        app:cardCornerRadius="10dp">
+
+                        <!-- Rectangle 1 -->
+                        <EditText
+                            android:id="@+id/add_compline_EDT_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:textColorHint="@color/black"
+                            android:padding="15dp"
+
+                            android:hint="@string/name_compline" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible"
+                        app:strokeWidth="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="100dp"
+                        app:strokeColor="@color/stroke_color_for_profile"
+                        app:cardCornerRadius="10dp">
+                        <!-- Rectangle 1 -->
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:padding="10dp"
+                            android:hint="@string/title" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="20dp"
+                        android:layout_marginLeft="100dp"
+
+                        app:strokeWidth="2dp"
+
+
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1"
+                        app:strokeColor="@color/color_for_login_fields"
+                        app:cardCornerRadius="10dp">
+                        <!--Rectangle 1 -->
+                       <EditText
+                            android:id="@+id/add_compline_EDT_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:textColorHint="@color/black"
+                            android:padding="15dp"
+                            android:hint="@string/title_compline" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+
+                    <!-- תוכן הדיווח: -->
+                    <TextView
+                        android:id="@+id/some_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="34dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="right"
+                        android:text="@string/content_compline"
+                        android:textColor="@color/black"
+
+                        android:textSize="30sp" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:strokeWidth="2dp"
+                        android:elevation="40dp"
+                        app:cardCornerRadius="10dp"
+                        android:layout_marginRight="30dp"
+                        app:strokeColor="@color/color_for_login_fields">
+
+                        <EditText
+                            android:id="@+id/add_compline_EDT_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="136dp"
+                            android:background="@color/white"
+
+                            android:padding="50dp"
+                            android:maxLines="10"
+
+
+
+
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+                </LinearLayout>
+
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_compline_BTN_save"
+                    style="@style/MyButton"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:shadowRadius="2"
+                    android:text="@string/submit"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/color_for_login_fields"
+                    app:strokeWidth="2dp" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
