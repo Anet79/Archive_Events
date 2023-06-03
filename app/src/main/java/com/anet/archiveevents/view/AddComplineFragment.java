@@ -20,6 +20,7 @@ import com.anet.archiveevents.R;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddComplineViewModel;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
+import com.anet.archiveevents.viewModel.DairyEventViewModel;
 
 public class AddComplineFragment extends Fragment {
 
@@ -42,7 +43,12 @@ public class AddComplineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
+
+
         findViews(view);
+        addComplineViewModel = new ViewModelProvider(this).get(AddComplineViewModel.class);
 
         add_compline_BTN_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +65,7 @@ public class AddComplineFragment extends Fragment {
 
             }
         });
+
 
 
 
