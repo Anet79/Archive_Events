@@ -15,6 +15,7 @@ public class DairyEventViewModel extends ViewModel {
    private MutableLiveData<ArrayList<Event>> allEvents;
     private ArrayList<Event>eventArrayList;
     private DairyEventRepository eventsDetailsRepository;
+    private String searchText;
 
     private MutableLiveData<ArrayList<Event>> allMyEvents;
     private LiveData<ArrayList<Event>> allNewEvents;
@@ -33,6 +34,7 @@ public class DairyEventViewModel extends ViewModel {
 
     }
 
+
     public LiveData<ArrayList<Event>> getAllEventsData(){
         return allEvents;
     }
@@ -43,5 +45,9 @@ public class DairyEventViewModel extends ViewModel {
 
     public LiveData<ArrayList<Event>> getEventList(String arrayType) {
         return allNewEvents;
+    }
+
+    public void filterList(String newText) {
+        eventsDetailsRepository.filterList(newText);
     }
 }

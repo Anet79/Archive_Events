@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,6 +23,7 @@ import com.anet.archiveevents.R;
 import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
+import com.anet.archiveevents.viewModel.DairyEventViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,6 +38,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     private BottomNavigationView bottom_navigation;
     private NavController navController;
     private GoogleMap mMap;
+    private DairyEventViewModel dairyEventViewModel;
+    private SearchView search_view;
 
 
     @Override
@@ -49,6 +53,21 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
 
         findViews(view);
+        dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
+        search_view.clearFocus();
+
+        search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                dairyEventViewModel.filterList(newText);
+                return true;
+            }
+        });
 
 
         SupportMapFragment mapFragment =(SupportMapFragment)getChildFragmentManager()
@@ -123,9 +142,14 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
+    private void filterList(String Text) {
+
+    }
+
     private void findViews(View view) {
         bottom_navigation=view.findViewById(R.id.bottom_navigation);
         navController= Navigation.findNavController(view);
+        search_view=view.findViewById(R.id.search_view);
 
 
     }

@@ -195,6 +195,12 @@ public class DairyEventRepository {
 
 
     }
+
+    public void filterList(String newText) {
+        //TODO- make kay word search- lan,lug and title
+        List<Event> allEventForSearch=new ArrayList<>();
+
+    }
 }
 
 
