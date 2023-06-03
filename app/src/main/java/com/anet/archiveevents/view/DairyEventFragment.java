@@ -34,8 +34,7 @@ public class DairyEventFragment extends Fragment implements EventItemClicked {
     private DairyEventViewModel dairyEventViewModel;
     private EventsAdapter eventsAdapter;
 
-
-
+    //rgrtdyg
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
