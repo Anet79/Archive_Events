@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,10 @@ import android.view.ViewGroup;
 
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.adapters.EventsAdapter;
+import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
+
+import java.util.ArrayList;
 
 
 public class NewDairyEventsFragment extends Fragment {
@@ -41,9 +45,14 @@ public class NewDairyEventsFragment extends Fragment {
 
 
         dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
-        dairyEventViewModel.getAllMyEventsData().observe(getViewLifecycleOwner(), events -> {
-            // Update the adapter with the new data
-            eventsAdapter.setEvents(events);
+        dairyEventViewModel.getAllMyEventsData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+            @Override
+            public void onChanged(ArrayList<Event> events) {
+                // Update the adapter with the new data
+                eventsAdapter.setEvents(events);
+            }
+
+
         });
 
 

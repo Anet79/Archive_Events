@@ -64,9 +64,14 @@ public class DairyEventFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
 
         dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
-        dairyEventViewModel.getAllEventsData().observe(getViewLifecycleOwner(), events -> {
-            // Update the adapter with the new data
-            eventsAdapter.setEvents(events);
+        dairyEventViewModel.getAllMyEventsData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+            @Override
+            public void onChanged(ArrayList<Event> events) {
+                // Update the adapter with the new data
+                eventsAdapter.setEvents(events);
+            }
+
+
         });
 
 
