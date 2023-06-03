@@ -1,0 +1,72 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Archive Events</string>
+    <string name="category">קטגוריה </string>
+    <string name="location">מיקום </string>
+    <string name="title">כותרת </string>
+    <string name="content_event">תוכן הדיווח</string>
+    <string name="upload_media">העלאת מדיה</string>
+    <string name="save">אישור</string>
+    <string name="import_media">ייבוא מדיה</string>
+
+
+    <!-- profile page -->
+    <string name="role">תפקיד: </string>
+    <string name="name">סא"ל נועה שדה</string>
+    <string name="phone_number">פלאפון: </string>
+    <string name="mail_address"> אימייל: </string>
+    <string name="location_1">מיקום: </string>
+    <string name="base">בסיס: </string>
+    <string name="edit_profile">עריכת פרופיל</string>
+    <string name="your_activity">הפעילות שלך</string>
+    <string name="saved_reports">דיווחים שמורים</string>
+    <string name="details">פרטים </string>
+
+    <string name="chat">צאט</string>
+    <string name="more_information">מידע נוסף</string>
+
+    <!-- content report view page -->
+    <string name="resent_reports">דיווחים אחרונים מהשטח</string>
+    <string name="my_report">הדיווחים שלי</string>
+    <string name="report_header">כותרת הדיווח </string>
+    <string name="report_content">תוכן הדיווח</string>
+
+    <!-- content chat page -->
+    <string name="chat_header_how_we_can_help_you">איך נוכל לעזור לך ?</string>
+    <string name="chat_support">תמיכה טכנית</string>
+    <string name="chat_misguided_report">דיווח שגוי</string>
+    <string name="chat_other">אחר</string>
+    <string name="chat_content_report">פירוט</string>
+
+    <!-- Login page -->
+    <string name="login_create_account">יצירת חשבון</string>
+    <string name="login_title_for_details_page">מילוי פרטים אישיים</string>
+    <string name="login_accept"> אישור </string>
+    <string name="login_sub_title">או </string>
+    <string name="login_full_name">שם מלא</string>
+    <string name="rank">דרגה </string>
+    <string name="login_continue_with_google_button">המשך עם חשבון גוגל שלך</string>
+    <string name="login_email">אימייל</string>
+    <string name="login_password">סיסמה</string>
+    <string name="login_remember_me_check_box">זכור אותי</string>
+    <string name="login_forgot_password"> שכחת את הסיסמה ?</string>
+    <string name="login_already_sign_up">כבר יש לך חשבון?</string>
+    <string name="dont_have_account">אין לך חשבון?</string>
+    <string name="login_text_view_button">התחבר </string>
+    <string name="signup_text_view_button">הירשם </string>
+    <string name="login_button_title">יצירת חשבון</string>
+
+
+    <string name="signup_title"> התחברות </string>
+    <string name="signup_title_button"> התחבר </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- TabLayout fragment -->
+    <string name="all_events">כל האירועים</string>
+    <string name="all_my_events">האירועים שלי</string>
+    <string name="all_my_favorite_events">המועדפים עליי</string>
+
+
+
+</resources>
