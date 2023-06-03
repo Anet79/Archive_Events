@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_dairyEventsFragment2"
             app:destination="@id/dairyEventsFragment2" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_addComplineFragment"
+            app:destination="@id/addComplineFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilePageFragment"
@@ -88,4 +91,8 @@
         android:name="com.anet.archiveevents.view.DairyEventsFragment"
         android:label="fragment_dairy_events"
         tools:layout="@layout/fragment_dairy_events" />
+    <fragment
+        android:id="@+id/addComplineFragment"
+        android:name="com.anet.archiveevents.view.AddComplineFragment"
+        android:label="AddComplineFragment" />
 </navigation>

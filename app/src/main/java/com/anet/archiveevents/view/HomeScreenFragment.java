@@ -87,6 +87,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
                         break;
                     case R.id.search:
+                        navController.navigate(R.id.action_homeScreenFragment_to_addComplineFragment);
 
 
 

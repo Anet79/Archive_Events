@@ -11,4 +11,7 @@ public class Keys {
     public static final String KEY_LIST_EVENTS = "list_events";
     public static final String KEY_USERS = "user_list";
     public static final String KEY_PROFILE_PICTURES ="profile_picture" ;
+
+    public static final String KEY_ADD_LIST_COMPLAINT ="list_complaints" ;
+
 }
