@@ -67,6 +67,9 @@
     <string name="all_my_events">האירועים שלי</string>
     <string name="all_my_favorite_events">המועדפים עליי</string>
 
+    <string name="my_map_api_kay">AIzaSyDd7PEkW8E38CHtasDUQNrQd5yinvXnr4U</string>
+
+
 
 
 </resources>
