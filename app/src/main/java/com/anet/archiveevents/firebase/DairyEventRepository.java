@@ -196,24 +196,19 @@ public class DairyEventRepository {
     }*/
 
     public void filterList(String newText) {
-        newText="jjjj";
+      //  newText="jjjj";
         DatabaseReference eventsRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         Query query = eventsRef.orderByChild(Keys.KEY_EVENT_TITLE).equalTo(newText);
         Log.d("ptt",query.toString());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // User already exists
 
-             //       loadCurrentUser(userId);
-
-
-                } else {
-                    // User does not exist
-                 //   userAllReadyExistMutableLiveData.postValue(false);
-
-
+                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
+                    Event event=dataSnapshot1.getValue(Event.class);
+                    if(event.getTitle().equalsIgnoreCase(newText)){
+                        Log.d("ptt ","yuval" );
+                    }
                 }
             }
 
@@ -228,6 +223,7 @@ public class DairyEventRepository {
 
     public void searchEventWithLandMark(LandMark landMarkUser){
         DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
+
         myRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
