@@ -34,6 +34,9 @@ public class DairyEventViewModel extends ViewModel {
 
 
     }
+    public void loadAllEvents(){
+        eventsDetailsRepository.loadEventData();
+    }
 
 
     public LiveData<ArrayList<Event>> getAllEventsData(){

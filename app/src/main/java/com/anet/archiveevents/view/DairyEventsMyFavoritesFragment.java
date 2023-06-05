@@ -40,11 +40,11 @@ public class DairyEventsMyFavoritesFragment extends Fragment {
 
 
 
-        dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
-        dairyEventViewModel.getAllEventsData().observe(getViewLifecycleOwner(), events -> {
-            // Update the adapter with the new data
-            eventsAdapter.setEvents(events);
-        });
+//        dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
+//        dairyEventViewModel.getAllMyEventsData().observe(getViewLifecycleOwner(), events -> {
+//            // Update the adapter with the new data
+//            eventsAdapter.setEvents(events);
+//        });
 
 
     }

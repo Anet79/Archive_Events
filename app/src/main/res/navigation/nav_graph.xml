@@ -90,9 +90,17 @@
         android:id="@+id/dairyEventsFragment2"
         android:name="com.anet.archiveevents.view.DairyEventsFragment"
         android:label="fragment_dairy_events"
-        tools:layout="@layout/fragment_dairy_events" />
+        tools:layout="@layout/fragment_dairy_events_tabs" >
+        <action
+            android:id="@+id/action_dairyEventsFragment2_to_dairyEventsMyFavoritesFragment2"
+            app:destination="@id/dairyEventsMyFavoritesFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/addComplineFragment"
         android:name="com.anet.archiveevents.view.AddComplineFragment"
         android:label="AddComplineFragment" />
+    <fragment
+        android:id="@+id/dairyEventsMyFavoritesFragment2"
+        android:name="com.anet.archiveevents.view.DairyEventsMyFavoritesFragment"
+        android:label="DairyEventsMyFavoritesFragment" />
 </navigation>

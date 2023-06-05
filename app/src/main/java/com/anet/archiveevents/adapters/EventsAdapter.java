@@ -37,9 +37,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public void setEvents(final ArrayList<Event> events) {
-        this.events.clear();
+      //  this.events.clear();
         this.events = events;
-        notifyDataSetChanged();
+     notifyDataSetChanged();
     }
 
     public EventsAdapter setEventClickListener(EventItemClicked eventsClickListener) {

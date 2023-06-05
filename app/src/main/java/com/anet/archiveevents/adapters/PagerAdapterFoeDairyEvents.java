@@ -33,9 +33,13 @@ public class PagerAdapterFoeDairyEvents extends FragmentStateAdapter {
 
             case 1:
                 return new DairyEventsMyEventsFragment();
+            case 2:
+                return new DairyEventsMyFavoritesFragment();
+            default:
+                return null;
 
         }
-        return new DairyEventsMyFavoritesFragment();
+
 
     }
 

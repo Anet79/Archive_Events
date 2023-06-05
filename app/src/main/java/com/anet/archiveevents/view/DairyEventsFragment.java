@@ -6,21 +6,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.anet.archiveevents.R;
-import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
-import com.anet.archiveevents.firebase.DairyEventRepository;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 public class DairyEventsFragment extends Fragment {
 
@@ -55,13 +50,17 @@ public class DairyEventsFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_dairy_events, container, false);
+        View view= inflater.inflate(R.layout.fragment_dairy_events_tabs, container, false);
 
         viewPager =view.findViewById(R.id.viewPager);
         tabLayout=view.findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("All Events"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Events"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Favorite Events"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         PagerAdapterFoeDairyEvents pagerAdapter = new PagerAdapterFoeDairyEvents(this.getActivity());
         viewPager.setAdapter(pagerAdapter);
-
+     //   viewPager.addOnLayoutChangeListener((View.OnLayoutChangeListener) new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
 

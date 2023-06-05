@@ -27,6 +27,7 @@ public class DairyEventRepository {
 
     private MutableLiveData<ArrayList<Event>> myEvents;
 
+
     private EventItemClicked eventOnClicked;
 
 
@@ -36,16 +37,16 @@ public class DairyEventRepository {
         myEvents=new MutableLiveData<>();
         allEvents=new ArrayList<>();
         allMyEvents=new ArrayList<>();
-       initAllEventsArray();
+      // initAllEventsArray();
 
 
     }
-    public void initAllEventsArray(){
-        loadEventData();
-        loadMyEventData();
-
-
-    }
+//    public void initAllEventsArray(){
+//        loadEventData();
+//        loadMyEventData();
+//
+//
+//    }
 
 
     public MutableLiveData<ArrayList<Event>> getAllEvents() {
@@ -58,7 +59,7 @@ public class DairyEventRepository {
         return myEvents;
     }
 
-    private void loadEventData() {
+    public void loadEventData() {
         DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         myRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
