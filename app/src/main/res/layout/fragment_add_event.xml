@@ -182,7 +182,7 @@
                     android:orientation="vertical">
 
 
-                    <!-- תוכן הדיווח: -->
+                    <!-- תוכן הדיווח:!! -->
                     <TextView
                         android:id="@+id/some_id"
                         android:layout_width="match_parent"
