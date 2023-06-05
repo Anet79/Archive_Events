@@ -1,13 +1,16 @@
 package com.anet.archiveevents.firebase;
 
 import android.app.Application;
+import android.content.Context;
 import android.net.Uri;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.anet.archiveevents.Keys;
 import com.anet.archiveevents.objects.Event;
+import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.objects.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,15 +35,19 @@ public class AddEventRepository {
     private MutableLiveData<Boolean> addCompleteEventMutableLiveData;
     private FirebaseStorage storage;
     private HashMap<String,String>allEventMedia;
+    private GpsTracker gpsService;
     private DataManager dataManager;
+    private Context context;
 
-    public AddEventRepository() {
+    public AddEventRepository(Context context) {
         newEvent=new MutableLiveData<>();
         addEventMutableLiveData=new MutableLiveData<>();
         storage = FirebaseStorage.getInstance();
         allEventMedia= new HashMap<>();
         dataManager= DataManager.getInstance();
         addCompleteEventMutableLiveData=new MutableLiveData<>();
+        this.context=context;
+
 
     }
 
@@ -111,6 +118,14 @@ public class AddEventRepository {
 
         DatabaseReference myRef =  dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         DatabaseReference myRef01 =  dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_FOR_LAND_MARKS);
+        gpsService = new GpsTracker(context);
+        if  (gpsService.canGetLocation()) {
+            landMark.setLatitude(gpsService.getLatitude());
+            landMark.setLongitude(gpsService.getLongitude());
+        } else {
+            gpsService.showSettingsAlert();
+        }
+
       // if(addEventMutableLiveData.getValue()==true) {
             Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allEventMedia,area);
             myRef.child(newEvent.getEventUID()).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -124,7 +139,15 @@ public class AddEventRepository {
             });
 
 
+            myRef01.child(landMark.toString()).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
 
+
+
+
+            }
+        });
 
 
 

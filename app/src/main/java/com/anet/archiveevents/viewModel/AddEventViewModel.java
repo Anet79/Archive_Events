@@ -1,6 +1,7 @@
 package com.anet.archiveevents.viewModel;
 
 import android.app.Application;
+import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -25,9 +26,9 @@ public class AddEventViewModel extends ViewModel {
     private MutableLiveData<Boolean> addCompleteEventMutableLiveData;
 
 
-    public AddEventViewModel() {
+    public AddEventViewModel(Context context) {
 
-        addEventRepository=new AddEventRepository();
+        addEventRepository=new AddEventRepository(context);
        // addEventMutableLiveData=addEventRepository.getAddEventMutableLiveData();
         addEventMutableLiveData=addEventRepository.getAddEventMutableLiveData();
         addCompleteEventMutableLiveData=addEventRepository.getAddCompleteEventMutableLiveData();
