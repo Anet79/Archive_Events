@@ -70,7 +70,7 @@
 
                     <!-- Rectangle 1 -->
                     <TextView
-                        android:id="@+id/add_event_location"
+                        android:id="@+id/add_event_EDT_location"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -97,7 +97,7 @@
 
                     <!-- Rectangle 1 -->
                     <TextView
-                        android:id="@+id/add_event_category"
+                        android:id="@+id/add_event_EDT_category"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -124,19 +124,18 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="100dp"
-
-                    app:strokeWidth="2dp"
-
-
-                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="100dp"
                     android:layout_weight="1"
+                    android:elevation="40dp"
+
+                    app:cardCornerRadius="10dp"
                     app:strokeColor="@color/color_for_login_fields"
-                    app:cardCornerRadius="10dp">
+                    app:strokeWidth="2dp">
 
                     <!-- Rectangle 1 -->
                     <TextView
-                        android:id="@+id/add_event_area"
+                        android:id="@+id/add_event_EDT_area"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -163,7 +162,7 @@
                     app:cardCornerRadius="10dp">
                     <!-- Rectangle 1 -->
                     <TextView
-                        android:id="@+id/add_event_title"
+                        android:id="@+id/add_event_EDT_title"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -206,7 +205,7 @@
                     app:strokeColor="@color/color_for_login_fields">
 
                     <TextView
-                        android:id="@+id/add_event_details"
+                        android:id="@+id/add_event_EDT_details"
                         android:layout_width="match_parent"
                         android:layout_height="136dp"
                         android:background="@color/white"
@@ -228,7 +227,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
 
@@ -237,22 +236,22 @@
                     android:id="@+id/upload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginRight="40dp"
                     android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="right"
                     android:text="@string/upload_media"
                     android:textColor="@color/black"
 
-                    android:textSize="30sp" />
+                    android:textSize="30sp"  />
 
                 <LinearLayout
                     android:id="@+id/add_event_LRT_upload"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="40dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/upload"
                     android:clickable="true"
                     android:gravity="center"
