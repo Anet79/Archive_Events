@@ -74,7 +74,7 @@ public class AddEventViewModel extends ViewModel {
         this.category.setValue(category);
     }
 
-    public void saveEvent(String title, String category, LandMark landMark,String content) {
+    public void saveEvent(String title, String category, LandMark landMark,String content,String area) {
         // Event(String creatorUID,String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia)
         // Implement the logic to save the event with the entered details
         // For example, create an AddedEvent object with the entered data and save it to a data source
@@ -94,7 +94,7 @@ public class AddEventViewModel extends ViewModel {
          EventRepository.getInstance().saveEvent(event);
          **/
 
-        addEventRepository.saveEvent(title,category,landMark,content);
+        addEventRepository.saveEvent(title,category,landMark,content,area);
     }
 
 

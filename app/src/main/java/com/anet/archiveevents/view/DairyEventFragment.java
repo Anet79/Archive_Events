@@ -33,7 +33,7 @@ public class DairyEventFragment extends Fragment  {
     private DairyEventViewModel dairyEventViewModel;
     private EventsAdapter eventsAdapter;
 
-    //rgrtdyg
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class DairyEventFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
 
         dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
-        dairyEventViewModel.getAllMyEventsData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+        dairyEventViewModel.getAllEventsData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
             @Override
             public void onChanged(ArrayList<Event> events) {
                 // Update the adapter with the new data
@@ -78,7 +78,6 @@ public class DairyEventFragment extends Fragment  {
     }
 
     private void findViews(View view) {
-      //  news_page_RECYC_reports_1= view.findViewById(R.id.news_page_RECYC_reports_1);
         news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
     }
 
@@ -88,8 +87,7 @@ public class DairyEventFragment extends Fragment  {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
         findViews(view);
-//        news_page_RECYC_reports_1.setLayoutManager(new LinearLayoutManager(this.getContext()));
-//        news_page_RECYC_reports_1.setHasFixedSize(true);
+
 
         news_page_RECYC_reports_2.setLayoutManager(new LinearLayoutManager(this.getContext()));
         news_page_RECYC_reports_2.setHasFixedSize(true);

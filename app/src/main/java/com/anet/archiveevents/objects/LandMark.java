@@ -33,7 +33,7 @@ public class LandMark {
 
     @Override
     public String toString() {
-        return "LandMark{" +
+        return
                 "latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';

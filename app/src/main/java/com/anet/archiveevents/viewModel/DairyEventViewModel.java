@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.anet.archiveevents.firebase.DairyEventRepository;
 import com.anet.archiveevents.objects.Event;
+import com.anet.archiveevents.objects.LandMark;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,4 +51,5 @@ public class DairyEventViewModel extends ViewModel {
     public void filterList(String newText) {
         eventsDetailsRepository.filterList(newText);
     }
+
 }

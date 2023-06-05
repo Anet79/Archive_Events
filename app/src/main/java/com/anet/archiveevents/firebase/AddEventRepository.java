@@ -107,11 +107,12 @@ public class AddEventRepository {
         }
     }
 
-    public void saveEvent(String title, String category, LandMark landMark, String content) {
+    public void saveEvent(String title, String category, LandMark landMark, String content,String area) {
 
         DatabaseReference myRef =  dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
+        DatabaseReference myRef01 =  dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_FOR_LAND_MARKS);
       // if(addEventMutableLiveData.getValue()==true) {
-            Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allEventMedia);
+            Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allEventMedia,area);
             myRef.child(newEvent.getEventUID()).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -121,15 +122,9 @@ public class AddEventRepository {
 
                 }
             });
-       // }
 
-//        if(addEventMutableLiveData.getValue()==true){
-//
-//            Event newEvent= new Event(auth.getCurrentUser().getUid(),category,title,landMark,content,allEventMedia);
-//
-//
-//
-//        }
+
+
 
 
 

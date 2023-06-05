@@ -40,7 +40,7 @@ public class AddEventFragment extends Fragment {
     private EditText add_event_EDT_location;
     private EditText add_event_EDT_title;
     private NavController navController;
-
+    private EditText add_event_EDT_area;
     private EditText add_event_EDT_details;
     private Button add_event_BTN_save;
     private AddEventViewModel addEventViewModel;
@@ -73,13 +73,14 @@ public class AddEventFragment extends Fragment {
             public void onClick(View v) {
                 // Get the details entered by the user
                 String title = add_event_EDT_title.getText().toString();
-
+                String area= add_event_EDT_area.getText().toString();
                 String content = add_event_EDT_details.getText().toString();
                 LandMark newOne=new LandMark(33.33,32.33);
+
                 String category = add_event_EDT_category.getText().toString();
 
                 if(!content.isEmpty()&&!title.isEmpty()&&!category.isEmpty()){
-                    addEventViewModel.saveEvent(title,category,newOne,content);
+                    addEventViewModel.saveEvent(title,category,newOne,content,area);
                 }
 
             }
@@ -116,6 +117,7 @@ public class AddEventFragment extends Fragment {
         add_event_EDT_details = view.findViewById(R.id.add_event_EDT_details);
         add_event_BTN_save = view.findViewById(R.id.add_event_BTN_save);
         add_event_LRT_upload=view.findViewById(R.id.add_event_LRT_upload);
+        add_event_EDT_area=view.findViewById(R.id.add_event_EDT_area);
         navController = Navigation.findNavController(view);
 
     }

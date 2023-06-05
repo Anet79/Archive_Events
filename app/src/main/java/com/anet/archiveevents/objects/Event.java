@@ -13,11 +13,12 @@ public class Event {
     private HashMap<String,String> listOfMedia;
     private String eventUID;
     private String creatorUID;
+    private String area;
 
 
     public Event() {}
 
-    public Event(String creatorUID,String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia) {
+    public Event(String creatorUID,String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia,String area) {
         this.eventUID= UUID.randomUUID().toString();
         this.category = category;
         this.title = title;
@@ -25,7 +26,16 @@ public class Event {
         this.content = content;
         this.listOfMedia = listOfMedia;
         this.creatorUID= creatorUID;
+        this.area=area;
 
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getEventUID() {
@@ -94,6 +104,7 @@ public class Event {
                 ", listOfMedia=" + listOfMedia +
                 ", eventUID='" + eventUID + '\'' +
                 ", creatorUID='" + creatorUID + '\'' +
+                ", area='" + area + '\'' +
                 '}';
     }
 }
