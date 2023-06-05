@@ -17,6 +17,8 @@ import com.anet.archiveevents.objects.LandMark;
 public class AddEventViewModel extends ViewModel {
 
     private MutableLiveData<String> date = new MutableLiveData<>();
+
+   // private Context context;
     private MutableLiveData<String> eventName = new MutableLiveData<>();
     private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<String> location = new MutableLiveData<>();
@@ -26,9 +28,10 @@ public class AddEventViewModel extends ViewModel {
     private MutableLiveData<Boolean> addCompleteEventMutableLiveData;
 
 
-    public AddEventViewModel(Context context) {
+    public AddEventViewModel() {
 
-        addEventRepository=new AddEventRepository(context);
+
+        addEventRepository=new AddEventRepository();
        // addEventMutableLiveData=addEventRepository.getAddEventMutableLiveData();
         addEventMutableLiveData=addEventRepository.getAddEventMutableLiveData();
         addCompleteEventMutableLiveData=addEventRepository.getAddCompleteEventMutableLiveData();
@@ -70,6 +73,8 @@ public class AddEventViewModel extends ViewModel {
     public MutableLiveData<String> getCategory() {
         return category;
     }
+
+
 
     public void setCategory(String category) {
         this.category.setValue(category);

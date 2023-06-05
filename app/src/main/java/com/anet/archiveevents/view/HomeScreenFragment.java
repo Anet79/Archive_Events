@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
+import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
@@ -31,15 +32,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     private BottomNavigationView bottom_navigation;
     private NavController navController;
+    private  LandMark newOne;
+
     private GoogleMap mMap;
     private DairyEventViewModel dairyEventViewModel;
     private SearchView search_view;
+    private GpsTracker gpsTracker;
+    private FloatingActionButton location_home_screen;
 
 
     @Override
@@ -135,12 +141,33 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        initButtons();
 
 
 
 
 
 
+
+    }
+
+    private void initButtons() {
+
+        location_home_screen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                gpsTracker = new GpsTracker(requireContext());
+                if  (gpsTracker.canGetLocation()) {
+                    newOne=  new LandMark(gpsTracker.getLatitude(),gpsTracker.getLongitude());
+                } else {
+                    gpsTracker.showSettingsAlert();
+                   // newOne=new LandMark(33.33,32.33);
+                }
+
+
+            }
+        });
     }
 
     private void filterList(String Text) {
@@ -151,6 +178,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         bottom_navigation=view.findViewById(R.id.bottom_navigation);
         navController= Navigation.findNavController(view);
         search_view=view.findViewById(R.id.search_view);
+        location_home_screen=view.findViewById(R.id.location_home_screen);
 
 
     }

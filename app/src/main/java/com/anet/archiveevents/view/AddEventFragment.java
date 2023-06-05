@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.anet.archiveevents.R;
+import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
 
@@ -50,6 +51,8 @@ public class AddEventFragment extends Fragment {
 
     private static final int REQUEST_CODE_PERMISSION = 2;
     private static final int REQUEST_CODE_PICK_MEDIA = 1;
+
+    private GpsTracker gpsService;
 
 
 
@@ -75,9 +78,18 @@ public class AddEventFragment extends Fragment {
                 String title = add_event_EDT_title.getText().toString();
                 String area= add_event_EDT_area.getText().toString();
                 String content = add_event_EDT_details.getText().toString();
-                LandMark newOne=new LandMark(33.33,32.33);
-
                 String category = add_event_EDT_category.getText().toString();
+                //LandMark newOne=new LandMark(33.33,32.33);
+                LandMark newOne;
+                gpsService = new GpsTracker(requireContext());
+                if  (gpsService.canGetLocation()) {
+                    newOne=  new LandMark(gpsService.getLatitude(),gpsService.getLongitude());
+                } else {
+                    gpsService.showSettingsAlert();
+                    newOne=new LandMark(33.33,32.33);
+                }
+
+
 
                 if(!content.isEmpty()&&!title.isEmpty()&&!category.isEmpty()){
                     addEventViewModel.saveEvent(title,category,newOne,content,area);
