@@ -14,6 +14,9 @@ import java.util.List;
 public class DairyEventViewModel extends ViewModel {
 
    private MutableLiveData<ArrayList<Event>> allEvents;
+
+    private MutableLiveData<ArrayList<Event>> allEventsSearch;
+
     private ArrayList<Event>eventArrayList;
     private DairyEventRepository eventsDetailsRepository;
     private String searchText;
@@ -25,9 +28,11 @@ public class DairyEventViewModel extends ViewModel {
 
     public DairyEventViewModel() {
         allEvents=new MutableLiveData<>();
+        allEventsSearch=new MutableLiveData<>();
         allNewEvents=new MutableLiveData<>();
         allMyEvents=new MutableLiveData<>();
         eventsDetailsRepository= new DairyEventRepository();
+        allEventsSearch=eventsDetailsRepository.getAllEventsSearch();
         allEvents=eventsDetailsRepository.getAllEvents();
         allMyEvents=eventsDetailsRepository.getAllMyEvents();
         allNewEvents= eventsDetailsRepository.getEventListFromFirebase("0");
@@ -45,6 +50,10 @@ public class DairyEventViewModel extends ViewModel {
 
     public LiveData<ArrayList<Event>> getAllMyEventsData(){
         return allMyEvents;
+    }
+
+    public LiveData<ArrayList<Event>> getAllEventsSearchData(){
+        return allEventsSearch;
     }
 
     public LiveData<ArrayList<Event>> getEventList(String arrayType) {

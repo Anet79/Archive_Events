@@ -23,20 +23,24 @@ import java.util.List;
 public class DairyEventRepository {
     private DataManager dataManager;
     private ArrayList<Event> allEvents;
+
+    private ArrayList<Event> allEventsSearch;
     private ArrayList<Event> allMyEvents;
     private MutableLiveData<ArrayList<Event>> events;
 
     private MutableLiveData<ArrayList<Event>> myEvents;
 
-
+    private MutableLiveData<ArrayList<Event>> eventsSearch;
     private EventItemClicked eventOnClicked;
 
 
     public DairyEventRepository() {
         dataManager = DataManager.getInstance();
        events=new MutableLiveData<>();
+        eventsSearch = new MutableLiveData<>();
         myEvents=new MutableLiveData<>();
         allEvents=new ArrayList<>();
+        allEventsSearch=new ArrayList<>();
         allMyEvents=new ArrayList<>();
       // initAllEventsArray();
 
@@ -54,6 +58,13 @@ public class DairyEventRepository {
 
         return events;
     }
+
+    public MutableLiveData<ArrayList<Event>> getAllEventsSearch() {
+
+        return eventsSearch;
+    }
+
+
 
     public MutableLiveData<ArrayList<Event>> getAllMyEvents() {
 
@@ -207,9 +218,12 @@ public class DairyEventRepository {
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
                     Event event=dataSnapshot1.getValue(Event.class);
                     if(event.getTitle().equalsIgnoreCase(newText)){
-                        Log.d("ptt ","yuval" );
+                        //Log.d("ptt ","yuval" +"/n"+event.toString() );
+                        allEventsSearch.add(event);
+
                     }
                 }
+                eventsSearch.setValue(allEventsSearch);
             }
 
             @Override
