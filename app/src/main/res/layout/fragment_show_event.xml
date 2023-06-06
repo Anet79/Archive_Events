@@ -7,6 +7,7 @@
     android:id="@+id/report_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".view.ShowEventFragment"
 
     android:clipToOutline="true"
     android:supportsRtl="true"
@@ -282,7 +283,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/add_event_BTN_save"
+                android:id="@+id/show_event_view_BTN_save"
                 style="@style/MyButton"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

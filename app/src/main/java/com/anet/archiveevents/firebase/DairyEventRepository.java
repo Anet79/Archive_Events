@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.anet.archiveevents.EventItemClicked;
 import com.anet.archiveevents.Keys;
+import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.objects.LandMark;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,10 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-public class DairyEventRepository {
+public class DairyEventRepository  {
     private DataManager dataManager;
     private ArrayList<Event> allEvents;
 
@@ -34,6 +38,7 @@ public class DairyEventRepository {
     private EventItemClicked eventOnClicked;
 
 
+
     public DairyEventRepository() {
         dataManager = DataManager.getInstance();
        events=new MutableLiveData<>();
@@ -42,6 +47,10 @@ public class DairyEventRepository {
         allEvents=new ArrayList<>();
         allEventsSearch=new ArrayList<>();
         allMyEvents=new ArrayList<>();
+
+
+
+
       // initAllEventsArray();
 
 
@@ -265,6 +274,19 @@ public class DairyEventRepository {
 
 
     }
+
+    public void setCurrentEventToDataManager(String  eventUid){
+
+        dataManager.setCurrentEventUid(eventUid);
+
+
+
+
+    }
+
+
+
+
 }
 
 

@@ -56,6 +56,10 @@ public class DairyEventViewModel extends ViewModel {
         return allEventsSearch;
     }
 
+    public void setCurrentEventToDataManager(String eventUid){
+        eventsDetailsRepository.setCurrentEventToDataManager(eventUid);
+    }
+
     public LiveData<ArrayList<Event>> getEventList(String arrayType) {
         return allNewEvents;
     }

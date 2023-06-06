@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,7 +36,7 @@ public class DairyEventFragment extends Fragment  {
 
     private DairyEventViewModel dairyEventViewModel;
     private EventsAdapter eventsAdapter;
-
+    private NavController navController;
 
 
     @Override
@@ -48,6 +50,9 @@ public class DairyEventFragment extends Fragment  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController= Navigation.findNavController(view);
+
+
         dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
         //dairyEventViewModel.loadAllEvents();
         dairyEventViewModel.getAllEventsData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
@@ -62,12 +67,30 @@ public class DairyEventFragment extends Fragment  {
 
         });
 
+        eventsAdapter.setEventClickListener(new EventItemClicked() {
+            @Override
+            public void eventClicked(Event event, int position) {
+                dairyEventViewModel.setCurrentEventToDataManager(event.getEventUID());
+
+              //  navController.navigate(R.id.action_dairyEventFragment_to_showEventFragment);
+
+
+
+            }
+
+        });
+
+
 
 
     }
 
     private void findViews(View view) {
         news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
+
+
+
+
     }
 
     @Override
@@ -77,6 +100,7 @@ public class DairyEventFragment extends Fragment  {
         View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
         findViews(view);
 
+
         eventsAdapter= new EventsAdapter();
         news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(this.getContext(),3));
         news_page_RECYC_reports_2.setHasFixedSize(true);
@@ -84,6 +108,8 @@ public class DairyEventFragment extends Fragment  {
 
        // news_page_RECYC_reports_1.setAdapter(eventsAdapter);
         news_page_RECYC_reports_2.setAdapter(eventsAdapter);
+
+
 
 
 

@@ -85,7 +85,11 @@
         android:id="@+id/dairyEventFragment"
         android:name="com.anet.archiveevents.view.DairyEventFragment"
         android:label="fragment_dairy_event"
-        tools:layout="@layout/fragment_dairy_event" />
+        tools:layout="@layout/fragment_dairy_event" >
+        <action
+            android:id="@+id/action_dairyEventFragment_to_showEventFragment"
+            app:destination="@id/showEventFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dairyEventsFragment2"
         android:name="com.anet.archiveevents.view.DairyEventsFragment"
@@ -103,4 +107,9 @@
         android:id="@+id/dairyEventsMyFavoritesFragment2"
         android:name="com.anet.archiveevents.view.DairyEventsMyFavoritesFragment"
         android:label="DairyEventsMyFavoritesFragment" />
+    <fragment
+        android:id="@+id/showEventFragment"
+        android:name="com.anet.archiveevents.view.ShowEventFragment"
+        android:label="fragment_show_event"
+        tools:layout="@layout/fragment_show_event" />
 </navigation>

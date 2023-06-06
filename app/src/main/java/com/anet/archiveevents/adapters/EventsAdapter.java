@@ -105,6 +105,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 public void onClick(View v) {
                     eventsClickListener.eventClicked(getEvent(getAdapterPosition()), getAdapterPosition());
 
+
                 }
             });
 

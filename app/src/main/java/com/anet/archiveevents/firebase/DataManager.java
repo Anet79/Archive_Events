@@ -18,6 +18,7 @@ public class DataManager {
     private final FirebaseStorage storage;      // for pictures and videos
 
     private User currentUser;
+    private String currentEventUid;
     private Event currentEvent;
 
 
@@ -81,5 +82,13 @@ public class DataManager {
     public DataManager setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
         return this;
+    }
+
+    public String getCurrentEventUid() {
+        return currentEventUid;
+    }
+
+    public void setCurrentEventUid(String currentEventUid) {
+        this.currentEventUid = currentEventUid;
     }
 }
