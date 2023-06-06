@@ -22,7 +22,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/folder_IMG_folder_picture"
+            android:id="@+id/event_map_IMG_folder_picture"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:padding="4dp"
@@ -39,17 +39,23 @@
             >
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/folder_LBL_folder_name"
+                android:id="@+id/event_map_LBL_event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingTop="4dp"
-                android:text="Folder Name"
-
+                android:text="@string/title"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/event_map_LBL_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/content_event"
+                android:textColor="#020202"
+                android:textSize="10sp" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/folder_LBL_created_date"
+                android:id="@+id/event_map_LBL_created_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="dd-mm-yyyy"

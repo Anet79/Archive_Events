@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_addComplineFragment"
             app:destination="@id/addComplineFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_showEventFragment"
+            app:destination="@id/showEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilePageFragment"

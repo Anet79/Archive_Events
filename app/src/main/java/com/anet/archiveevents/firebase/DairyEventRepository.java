@@ -1,6 +1,7 @@
 package com.anet.archiveevents.firebase;
 
 import android.util.Log;
+import android.widget.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -9,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.anet.archiveevents.EventItemClicked;
 import com.anet.archiveevents.Keys;
 import com.anet.archiveevents.adapters.EventsAdapter;
+import com.anet.archiveevents.adapters.MapEventsAdapter;
 import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.objects.LandMark;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +38,9 @@ public class DairyEventRepository  {
 
     private MutableLiveData<ArrayList<Event>> eventsSearch;
     private EventItemClicked eventOnClicked;
+    private MapEventsAdapter mapEventsAdapter;
+    private MutableLiveData<Boolean> haveItemInList;
+
 
 
 
@@ -47,13 +52,23 @@ public class DairyEventRepository  {
         allEvents=new ArrayList<>();
         allEventsSearch=new ArrayList<>();
         allMyEvents=new ArrayList<>();
+        mapEventsAdapter= new MapEventsAdapter();
+        haveItemInList = new MutableLiveData<>();
+
+        if(allEventsSearch.isEmpty()){
+            haveItemInList.postValue(false);
+        }
 
 
 
 
-      // initAllEventsArray();
+
+        // initAllEventsArray();
 
 
+    }
+    public MapEventsAdapter getMapEventsAdapter(){
+        return mapEventsAdapter;
     }
 //    public void initAllEventsArray(){
 //        loadEventData();
@@ -62,6 +77,9 @@ public class DairyEventRepository  {
 //
 //    }
 
+    public MutableLiveData<Boolean> getHaveItemInList() {
+        return haveItemInList;
+    }
 
     public MutableLiveData<ArrayList<Event>> getAllEvents() {
 
@@ -69,6 +87,8 @@ public class DairyEventRepository  {
     }
 
     public MutableLiveData<ArrayList<Event>> getAllEventsSearch() {
+
+
 
         return eventsSearch;
     }
@@ -216,7 +236,7 @@ public class DairyEventRepository  {
     }*/
 
     public void filterList(String newText) {
-      //  newText="jjjj";
+        //newText="jjjj";
         DatabaseReference eventsRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         Query query = eventsRef.orderByChild(Keys.KEY_EVENT_TITLE).equalTo(newText);
         Log.d("ptt",query.toString());
@@ -226,13 +246,16 @@ public class DairyEventRepository  {
 
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
                     Event event=dataSnapshot1.getValue(Event.class);
-                    if(event.getTitle().equalsIgnoreCase(newText)){
+                    if(event.getTitle().equalsIgnoreCase("jjjj")){
                         //Log.d("ptt ","yuval" +"/n"+event.toString() );
                         allEventsSearch.add(event);
-
+                        haveItemInList.postValue(true);
                     }
                 }
+                mapEventsAdapter.setEvents(allEventsSearch);
                 eventsSearch.setValue(allEventsSearch);
+
+
             }
 
             @Override

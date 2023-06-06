@@ -11,6 +11,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -19,8 +24,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.anet.archiveevents.EventItemClicked;
 import com.anet.archiveevents.R;
+import com.anet.archiveevents.adapters.EventsAdapter;
+import com.anet.archiveevents.adapters.MapEventsAdapter;
 import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
+import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
@@ -35,15 +44,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     private BottomNavigationView bottom_navigation;
     private NavController navController;
     private  LandMark newOne;
+    private RecyclerView news_page_RECYC_reports_2;
 
     private GoogleMap mMap;
     private DairyEventViewModel dairyEventViewModel;
     private SearchView search_view;
+    private MapEventsAdapter eventsAdapter;
+
     private GpsTracker gpsTracker;
     private FloatingActionButton location_home_screen;
 
@@ -51,6 +65,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
 
 
     }
@@ -59,7 +74,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
 
         findViews(view);
-        dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
+
         search_view.clearFocus();
 
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -70,10 +85,36 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+//                dairyEventViewModel.getAllEventsSearchData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+//                    @Override
+//                    public void onChanged(ArrayList<Event> events) {
+//                        // Update the adapter with the new data
+//                        eventsAdapter.setEvents(events);
+//
+//                        //  eventsAdapter.notifyDataSetChanged();
+//                    }
+//
+//
+//
+//
+//                });
                 dairyEventViewModel.filterList(newText);
+
+
+
+
                 return true;
             }
         });
+
+
+
+
+
+
+
+
+
 
 
         SupportMapFragment mapFragment =(SupportMapFragment)getChildFragmentManager()
@@ -142,6 +183,46 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        dairyEventViewModel.getHaveItemInList().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+
+                    news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
+                     eventsAdapter= new MapEventsAdapter();
+                     eventsAdapter.setEvents(dairyEventViewModel.getAllEventsSearchData().getValue());
+
+                    //eventsAdapter= dairyEventViewModel.getMapEventsAdapter();
+                    news_page_RECYC_reports_2.setLayoutManager(new LinearLayoutManager(getContext()));
+                    news_page_RECYC_reports_2.setHasFixedSize(true);
+                    news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
+                    news_page_RECYC_reports_2.setAdapter(eventsAdapter);
+                }
+
+            }
+        });
+
+        //navController = Navigation.findNavController(requireActivity(), R.id.action_dairyEventFragment_to_showEventFragment);
+
+//        NavHostFragment navHostFragment =
+//                (NavHostFragment) getParentFragmentManager().findFragmentById(R.id.nav_host_fragment);
+//        NavController navController = navHostFragment.getNavController();
+
+        // navController=Navigation.findNavController(view);
+
+
+
+//        eventsAdapter.setEventsClickListener(new EventItemClicked() {
+//            @Override
+//            public void eventClicked(Event event, int position) {
+//                dairyEventViewModel.setCurrentEventToDataManager(event.getEventUID());
+//               // Navigation.findNavController(view).navigate(R.id.showEventFragment);
+//                navController.navigate(R.id.action_dairyEventFragment_to_showEventFragment);
+//
+//            }
+//
+//        });
+
         initButtons();
 
 
@@ -180,6 +261,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         navController= Navigation.findNavController(view);
         search_view=view.findViewById(R.id.search_view);
         location_home_screen=view.findViewById(R.id.location_home_screen);
+        news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
 
 
     }
@@ -188,7 +270,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_screen, container, false);
+        View view= inflater.inflate(R.layout.fragment_home_screen, container, false);
+
+
+        return view;
 
 
     }
