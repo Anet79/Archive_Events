@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,9 +52,22 @@ public class DairyEventFragment extends Fragment  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController= Navigation.findNavController(view);
+        news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
+        //navController = Navigation.findNavController(requireActivity(), R.id.action_dairyEventFragment_to_showEventFragment);
 
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getParentFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
 
+       // navController=Navigation.findNavController(view);
+
+        eventsAdapter= new EventsAdapter();
+        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(this.getContext(),3));
+        news_page_RECYC_reports_2.setHasFixedSize(true);
+        news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
+
+        // news_page_RECYC_reports_1.setAdapter(eventsAdapter);
+        news_page_RECYC_reports_2.setAdapter(eventsAdapter);
         dairyEventViewModel = new ViewModelProvider(this).get(DairyEventViewModel.class);
         //dairyEventViewModel.loadAllEvents();
         dairyEventViewModel.getAllEventsData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
@@ -65,15 +80,15 @@ public class DairyEventFragment extends Fragment  {
             }
 
 
+
+
         });
 
         eventsAdapter.setEventClickListener(new EventItemClicked() {
             @Override
             public void eventClicked(Event event, int position) {
                 dairyEventViewModel.setCurrentEventToDataManager(event.getEventUID());
-
-              //  navController.navigate(R.id.action_dairyEventFragment_to_showEventFragment);
-
+                Navigation.findNavController(view).navigate(R.id.showEventFragment);
 
 
             }
@@ -97,24 +112,18 @@ public class DairyEventFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
-        findViews(view);
+        //View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
+      //  findViews(view);
 
 
-        eventsAdapter= new EventsAdapter();
-        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(this.getContext(),3));
-        news_page_RECYC_reports_2.setHasFixedSize(true);
-        news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
 
-       // news_page_RECYC_reports_1.setAdapter(eventsAdapter);
-        news_page_RECYC_reports_2.setAdapter(eventsAdapter);
 
 
 
 
 
        // dairyEventViewModel.loadAllEvents();
-        return view;
+        return inflater.inflate(R.layout.fragment_dairy_event, container, false);
     }
 
 
