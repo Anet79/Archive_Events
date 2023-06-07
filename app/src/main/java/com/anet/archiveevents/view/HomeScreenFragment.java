@@ -188,7 +188,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
 
-                    news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
+                   // news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
                      eventsAdapter= new MapEventsAdapter();
                      eventsAdapter.setEvents(dairyEventViewModel.getAllEventsSearchData().getValue());
 
@@ -271,6 +271,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home_screen, container, false);
+
+
 
 
         return view;
