@@ -26,6 +26,8 @@ public class ShowEventFragment extends Fragment {
     private TextView show_event_view_category;
     private TextView show_event_view_area;
     private TextView show_event_view_details;
+
+    private TextView show_event_view_title;
     private MaterialButton show_event_view_BTN_save;
     private ShowEventViewModel showEventViewModel;
     private NavController navController;
@@ -41,10 +43,11 @@ public class ShowEventFragment extends Fragment {
         showEventViewModel.getGetSpecificEvent().observe(this, new Observer<Event>() {
             @Override
             public void onChanged(Event event) {
-                //show_event_view_location.setText(event.g());
                 show_event_view_category.setText(event.getCategory());
                 show_event_view_area.setText(event.getArea());
                 show_event_view_details.setText(event.getContent());
+                show_event_view_location.setText(event.getLandMark().toString());
+                show_event_view_title.setText(event.getTitle());
 
             }
 
@@ -80,6 +83,7 @@ public class ShowEventFragment extends Fragment {
         show_event_view_category=view.findViewById(R.id.show_event_view_category);
         show_event_view_area=view.findViewById(R.id.show_event_view_area);
         show_event_view_details=view.findViewById(R.id.show_event_view_details);
+        show_event_view_title=view.findViewById(R.id.show_event_view_title);
         show_event_view_BTN_save=view.findViewById(R.id.show_event_view_BTN_save);
 
 

@@ -1,5 +1,7 @@
 package com.anet.archiveevents.objects;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -15,11 +17,17 @@ public class Event {
     private String creatorUID;
     private String area;
 
+    private String eventDate;
+
 
     public Event() {}
 
     public Event(String creatorUID,String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia,String area) {
         this.eventUID= UUID.randomUUID().toString();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        String str = formatter.format(date);
+        this.eventDate=str;
         this.category = category;
         this.title = title;
         this.landMark = landMark;
@@ -94,6 +102,14 @@ public class Event {
         this.creatorUID = creatorUID;
     }
 
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -105,6 +121,7 @@ public class Event {
                 ", eventUID='" + eventUID + '\'' +
                 ", creatorUID='" + creatorUID + '\'' +
                 ", area='" + area + '\'' +
+                ", eventDate='" + eventDate + '\'' +
                 '}';
     }
 }

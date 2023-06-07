@@ -33,9 +33,9 @@ public class LandMark {
 
     @Override
     public String toString() {
-        return
-               String.valueOf(latitude+longitude);
-
-
+        return "{" +
+                "" + latitude +
+                "\t,\t" + longitude +
+                '}';
     }
 }
