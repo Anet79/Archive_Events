@@ -1,5 +1,7 @@
 package com.anet.archiveevents.objects;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,7 +24,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(String creatorUID,String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia,String area) {
+    public Event(String creatorUID, String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia, String area) {
         this.eventUID= UUID.randomUUID().toString();
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -69,6 +71,7 @@ public class Event {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
     public LandMark getLandMark() {
         return landMark;

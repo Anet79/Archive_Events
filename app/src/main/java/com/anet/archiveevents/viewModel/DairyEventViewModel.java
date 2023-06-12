@@ -40,7 +40,7 @@ public class DairyEventViewModel extends ViewModel {
         allEventsSearch=eventsDetailsRepository.getAllEventsSearch();
         allEvents=eventsDetailsRepository.getAllEvents();
         allMyEvents=eventsDetailsRepository.getAllMyEvents();
-        allNewEvents= eventsDetailsRepository.getEventListFromFirebase("0");
+        //allNewEvents= eventsDetailsRepository.getEventListFromFirebase("0");
         haveItemInList=eventsDetailsRepository.getHaveItemInList();
         mapEventsAdapter=eventsDetailsRepository.getMapEventsAdapter();
 

@@ -31,6 +31,8 @@ import com.anet.archiveevents.R;
 import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class AddEventFragment extends Fragment {
@@ -44,11 +46,12 @@ public class AddEventFragment extends Fragment {
     private EditText add_event_EDT_area;
     private EditText add_event_EDT_details;
     private Button add_event_BTN_save;
+    private FloatingActionButton add_event_location;
     private AddEventViewModel addEventViewModel;
     private LinearLayout add_event_LRT_upload;
   //  private static final int REQUEST_CODE_PICK_VIDEO = 1;
     private static final int READ_EXTERNAL_STORAGE = 1;
-
+    private LandMark newOne;
     private static final int REQUEST_CODE_PERMISSION = 2;
     private static final int REQUEST_CODE_PICK_MEDIA = 1;
 
@@ -71,6 +74,22 @@ public class AddEventFragment extends Fragment {
 
         findViews(view);
 
+
+        add_event_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                gpsService = new GpsTracker(getContext());
+                if  (gpsService.canGetLocation()) {
+                    newOne=  new LandMark(gpsService.getLatitude(),gpsService.getLongitude());
+                } else {
+                    gpsService.showSettingsAlert();
+                    newOne=new LandMark(33.33,32.33);
+                }
+
+            }
+        });
+
         add_event_BTN_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,14 +99,8 @@ public class AddEventFragment extends Fragment {
                 String content = add_event_EDT_details.getText().toString();
                 String category = add_event_EDT_category.getText().toString();
                 //LandMark newOne=new LandMark(33.33,32.33);
-                LandMark newOne;
-                gpsService = new GpsTracker(requireContext());
-                if  (gpsService.canGetLocation()) {
-                    newOne=  new LandMark(gpsService.getLatitude(),gpsService.getLongitude());
-                } else {
-                    gpsService.showSettingsAlert();
-                    newOne=new LandMark(33.33,32.33);
-                }
+
+
 
 
 
@@ -124,12 +137,13 @@ public class AddEventFragment extends Fragment {
 
     private void findViews(View view) {
         add_event_EDT_category = view.findViewById(R.id.add_event_EDT_category);
-        add_event_EDT_location = view.findViewById(R.id.add_event_EDT_location);
+
         add_event_EDT_title = view.findViewById(R.id.add_event_EDT_title);
         add_event_EDT_details = view.findViewById(R.id.add_event_EDT_details);
         add_event_BTN_save = view.findViewById(R.id.add_event_BTN_save);
         add_event_LRT_upload=view.findViewById(R.id.add_event_LRT_upload);
         add_event_EDT_area=view.findViewById(R.id.add_event_EDT_area);
+        add_event_location=view.findViewById(R.id.add_event_location);
         navController = Navigation.findNavController(view);
 
     }

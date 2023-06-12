@@ -63,19 +63,20 @@ public class DairyEventRepository  {
 
 
 
-        // initAllEventsArray();
+        initAllEventsArray();
 
 
     }
     public MapEventsAdapter getMapEventsAdapter(){
         return mapEventsAdapter;
     }
-//    public void initAllEventsArray(){
-//        loadEventData();
-//        loadMyEventData();
-//
-//
-//    }
+
+    public void initAllEventsArray(){
+        loadEventData();
+        loadMyEventData();
+
+
+    }
 
     public MutableLiveData<Boolean> getHaveItemInList() {
         return haveItemInList;
@@ -153,80 +154,80 @@ public class DairyEventRepository  {
     }
 
 
-    public MutableLiveData<ArrayList<Event>> getEventListFromFirebase(String arrayType){
-        DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
-
-       // MutableLiveData<ArrayList<Event>> data = new MutableLiveData<>();
-
-
-        if (arrayType.equals("0")){
-
-            myRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                @Override
-                public void onSuccess(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            allEvents.add(snapshot.getValue(Event.class));
-
-                        }
-                        events.setValue(allEvents);
-
-
-
-
-                        for (int i = 0; i <allEvents.size() ; i++) {
-                            Log.d("allEvents",allEvents.get(i).toString());
-                        }
-
-
-
-                        //eventOnClicked.eventClicked();
-
-                    }
-                }
-
-            });
-
-        }
-        else if (arrayType.equals("1"))
-            myRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                @Override
-                public void onSuccess(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-
-
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            for(DataSnapshot ds : snapshot.getChildren()){
-                                if (ds.getValue().equals(dataManager.getCurrentUser().getUID())) {
-                                    allMyEvents.add(snapshot.getValue(Event.class));
-                                    continue;
-                                }
-                            }
-
-
-
-                        }
-                        events.setValue(allMyEvents);
-
-
-                    }
-                }
-
-            });
-
-
-
-
-        return events;
-
-
-
-
-
-
-
-    }
+//    public MutableLiveData<ArrayList<Event>> getEventListFromFirebase(String arrayType){
+//        DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
+//
+//       // MutableLiveData<ArrayList<Event>> data = new MutableLiveData<>();
+//
+//
+//        if (arrayType.equals("0")){
+//
+//            myRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+//                @Override
+//                public void onSuccess(DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()) {
+//
+//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                            allEvents.add(snapshot.getValue(Event.class));
+//
+//                        }
+//                        events.setValue(allEvents);
+//
+//
+//
+//
+//                        for (int i = 0; i <allEvents.size() ; i++) {
+//                            Log.d("allEvents",allEvents.get(i).toString());
+//                        }
+//
+//
+//
+//                        //eventOnClicked.eventClicked();
+//
+//                    }
+//                }
+//
+//            });
+//
+//        }
+//        else if (arrayType.equals("1"))
+//            myRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+//                @Override
+//                public void onSuccess(DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()) {
+//
+//
+//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                            for(DataSnapshot ds : snapshot.getChildren()){
+//                                if (ds.getValue().equals(dataManager.getCurrentUser().getUID())) {
+//                                    allMyEvents.add(snapshot.getValue(Event.class));
+//                                    continue;
+//                                }
+//                            }
+//
+//
+//
+//                        }
+//                        events.setValue(allMyEvents);
+//
+//
+//                    }
+//                }
+//
+//            });
+//
+//
+//
+//
+//        return events;
+//
+//
+//
+//
+//
+//
+//
+//    }
 
   /*  public void filterList(String newText) {
         //TODO- make kay word search- lan,lug and title
@@ -239,14 +240,14 @@ public class DairyEventRepository  {
         //newText="jjjj";
         DatabaseReference eventsRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         Query query = eventsRef.orderByChild(Keys.KEY_EVENT_TITLE).equalTo(newText);
-        Log.d("ptt",query.toString());
+        Log.d("ptt",query.get().toString());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
                     Event event=dataSnapshot1.getValue(Event.class);
-                    if(event.getTitle().equalsIgnoreCase("jjjj")){
+                    if(event.getTitle().equalsIgnoreCase(newText)){
                         //Log.d("ptt ","yuval" +"/n"+event.toString() );
                         allEventsSearch.add(event);
                         haveItemInList.postValue(true);

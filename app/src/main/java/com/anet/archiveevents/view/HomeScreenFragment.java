@@ -1,7 +1,10 @@
 package com.anet.archiveevents.view;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,29 +14,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.anet.archiveevents.EventItemClicked;
 import com.anet.archiveevents.R;
-import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.adapters.MapEventsAdapter;
-import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
-import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
-import com.anet.archiveevents.viewModel.AddEventViewModel;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
+import com.anet.archiveevents.viewModel.SearchOnTheMapViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,13 +34,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.ArrayList;
-
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     private BottomNavigationView bottom_navigation;
     private NavController navController;
-    private  LandMark newOne;
+    private LandMark newOne;
     private RecyclerView news_page_RECYC_reports_2;
 
     private GoogleMap mMap;
@@ -60,6 +48,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
     private GpsTracker gpsTracker;
     private FloatingActionButton location_home_screen;
+    private SearchOnTheMapViewModel searchOnTheMapViewModel;
+
 
 
     @Override
@@ -69,6 +59,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
 
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -80,6 +71,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+               // dairyEventViewModel.filterList(query);
+
                 return false;
             }
 
@@ -98,9 +91,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 //
 //
 //                });
-                dairyEventViewModel.filterList(newText);
-
-
+//                dairyEventViewModel.filterList(newText);
 
 
                 return true;
@@ -108,17 +99,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         });
 
 
-
-
-
-
-
-
-
-
-
-        SupportMapFragment mapFragment =(SupportMapFragment)getChildFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
 
@@ -130,50 +111,28 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
                     case R.id.home:
 
 
-
-
-
                         break;
                     case R.id.search:
-                        navController.navigate(R.id.action_homeScreenFragment_to_addComplineFragment);
-
-
-
-
+                        navController.navigate(R.id.action_homeScreenFragment_to_searchOnTheMapFragment);
 
 
                         break;
-                        // add event flow
+                    // add event flow
                     case R.id.add:
                         navController.navigate(R.id.action_homeScreenFragment_to_addEventFragment);
 
 
-
-
-
-
-
                         break;
-                        // view profile page
+                    // view profile page
                     case R.id.user_profile:
                         navController.navigate(R.id.action_homeScreenFragment_to_profilePageFragment);
-
-
-
-
-
 
 
                         break;
                     case R.id.news:
 
 
-
                         navController.navigate(R.id.action_homeScreenFragment_to_dairyEventsFragment2);
-
-
-
-
 
 
                         break;
@@ -186,11 +145,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         dairyEventViewModel.getHaveItemInList().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
+                if (aBoolean) {
 
-                   // news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
-                     eventsAdapter= new MapEventsAdapter();
-                     eventsAdapter.setEvents(dairyEventViewModel.getAllEventsSearchData().getValue());
+                    // news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
+                    eventsAdapter = new MapEventsAdapter();
+                    eventsAdapter.setEvents(dairyEventViewModel.getAllEventsSearchData().getValue());
 
                     //eventsAdapter= dairyEventViewModel.getMapEventsAdapter();
                     news_page_RECYC_reports_2.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -211,7 +170,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         // navController=Navigation.findNavController(view);
 
 
-
 //        eventsAdapter.setEventsClickListener(new EventItemClicked() {
 //            @Override
 //            public void eventClicked(Event event, int position) {
@@ -225,12 +183,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
         initButtons();
 
-
-
-
-
-
-
     }
 
     private void initButtons() {
@@ -240,11 +192,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View v) {
 
                 gpsTracker = new GpsTracker(requireContext());
-                if  (gpsTracker.canGetLocation()) {
-                    newOne=  new LandMark(gpsTracker.getLatitude(),gpsTracker.getLongitude());
+                if (gpsTracker.canGetLocation()) {
+                    newOne = new LandMark(gpsTracker.getLatitude(), gpsTracker.getLongitude());
                 } else {
                     gpsTracker.showSettingsAlert();
-                   // newOne=new LandMark(33.33,32.33);
+                    // newOne=new LandMark(33.33,32.33);
                 }
 
 
@@ -257,22 +209,19 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void findViews(View view) {
-        bottom_navigation=view.findViewById(R.id.bottom_navigation);
-        navController= Navigation.findNavController(view);
-        search_view=view.findViewById(R.id.search_view);
-        location_home_screen=view.findViewById(R.id.location_home_screen);
-        news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
+        bottom_navigation = view.findViewById(R.id.bottom_navigation);
+        navController = Navigation.findNavController(view);
+        search_view = view.findViewById(R.id.search_view);
+        location_home_screen = view.findViewById(R.id.location_home_screen);
+        news_page_RECYC_reports_2 = view.findViewById(R.id.news_page_RECYC_reports_2);
 
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home_screen, container, false);
-
-
+        View view = inflater.inflate(R.layout.fragment_home_screen, container, false);
 
 
         return view;
@@ -282,12 +231,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        mMap=googleMap;
+        mMap = googleMap;
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }

@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_showEventFragment"
             app:destination="@id/showEventFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_searchOnTheMapFragment"
+            app:destination="@id/searchOnTheMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilePageFragment"
@@ -115,4 +118,9 @@
         android:name="com.anet.archiveevents.view.ShowEventFragment"
         android:label="fragment_show_event"
         tools:layout="@layout/fragment_show_event" />
+    <fragment
+        android:id="@+id/searchOnTheMapFragment"
+        android:name="com.anet.archiveevents.view.SearchOnTheMapFragment"
+        android:label="fragment_search_on_the_map"
+        tools:layout="@layout/fragment_search_on_the_map" />
 </navigation>

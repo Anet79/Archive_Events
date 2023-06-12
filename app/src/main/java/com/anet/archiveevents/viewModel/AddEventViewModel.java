@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel;
 import com.anet.archiveevents.firebase.AddEventRepository;
 import com.anet.archiveevents.firebase.AuthenticationRepository;
 import com.anet.archiveevents.objects.LandMark;
+import com.google.android.gms.maps.model.LatLng;
 
 public class AddEventViewModel extends ViewModel {
 
@@ -80,7 +81,7 @@ public class AddEventViewModel extends ViewModel {
         this.category.setValue(category);
     }
 
-    public void saveEvent(String title, String category, LandMark landMark,String content,String area) {
+    public void saveEvent(String title, String category, LandMark landMark, String content, String area) {
         // Event(String creatorUID,String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia)
         // Implement the logic to save the event with the entered details
         // For example, create an AddedEvent object with the entered data and save it to a data source

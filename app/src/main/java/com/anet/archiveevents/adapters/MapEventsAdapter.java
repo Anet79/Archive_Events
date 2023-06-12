@@ -81,14 +81,7 @@ public class MapEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             //this.event_map_LBL_created_date= eventView.findViewById(R.id.event_map_LBL_created_date);
             this.event_map_LBL_content = eventView.findViewById(R.id.event_map_LBL_content);
 
-            eventView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    eventsClickListener.eventClicked(getEvent(getAdapterPosition()), getAdapterPosition());
-
-
-                }
-            });
+            eventView.setOnClickListener(v -> eventsClickListener.eventClicked(getEvent(getAdapterPosition()), getAdapterPosition()));
 
         }
     }

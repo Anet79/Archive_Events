@@ -13,6 +13,7 @@ import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.objects.User;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -115,7 +116,7 @@ public class AddEventRepository {
         }
     }
 
-    public void saveEvent(String title, String category, LandMark landMark, String content,String area) {
+    public void saveEvent(String title, String category, LandMark landMark, String content, String area) {
 
         DatabaseReference myRef =  dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         DatabaseReference myRef01 =  dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_FOR_LAND_MARKS);
