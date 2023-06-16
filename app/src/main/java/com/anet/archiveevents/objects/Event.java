@@ -3,8 +3,11 @@ package com.anet.archiveevents.objects;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Event {
@@ -14,7 +17,7 @@ public class Event {
     private LandMark landMark;
     private String content;
     // this list will provide us all the upload user's media(video, photos and more)
-    private HashMap<String,String> listOfMedia;
+    private ArrayList<String> listOfMedia;
     private String eventUID;
     private String creatorUID;
     private String area;
@@ -24,7 +27,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(String creatorUID, String category, String title, LandMark landMark, String content, HashMap<String, String> listOfMedia, String area) {
+    public Event(String creatorUID, String category, String title, LandMark landMark, String content, ArrayList<String> listOfMedia, String area) {
         this.eventUID= UUID.randomUUID().toString();
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -89,11 +92,12 @@ public class Event {
         this.content = content;
     }
 
-    public HashMap<String, String> getListOfMedia() {
+
+    public ArrayList<String> getListOfMedia() {
         return listOfMedia;
     }
 
-    public void setListOfMedia(HashMap<String, String> listOfMedia) {
+    public void setListOfMedia(ArrayList<String> listOfMedia) {
         this.listOfMedia = listOfMedia;
     }
 

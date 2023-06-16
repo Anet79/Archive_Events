@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DairyEventRepository  {
@@ -237,33 +238,22 @@ public class DairyEventRepository  {
     }*/
 
     public void filterList(String newText) {
-        //newText="jjjj";
-        DatabaseReference eventsRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
-        Query query = eventsRef.orderByChild(Keys.KEY_EVENT_TITLE).equalTo(newText);
-        Log.d("ptt",query.get().toString());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        ArrayList<Event> allEventForSearch=new ArrayList<>();
+        for (Event event:events.getValue()) {
+            if(event.getTitle().toLowerCase().contains(newText.toLowerCase())){
+                allEventForSearch.add(event);
+            }
+            if(allEventForSearch.isEmpty()){
+                haveItemInList.setValue(false);
 
-                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
-                    Event event=dataSnapshot1.getValue(Event.class);
-                    if(event.getTitle().equalsIgnoreCase(newText)){
-                        //Log.d("ptt ","yuval" +"/n"+event.toString() );
-                        allEventsSearch.add(event);
-                        haveItemInList.postValue(true);
-                    }
-                }
-                mapEventsAdapter.setEvents(allEventsSearch);
-                eventsSearch.setValue(allEventsSearch);
-
+            }
+            else {
+                haveItemInList.setValue(true);
+                eventsSearch.setValue(allEventForSearch);
 
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle the error case
-            }
-        });
+        }
     }
 
 

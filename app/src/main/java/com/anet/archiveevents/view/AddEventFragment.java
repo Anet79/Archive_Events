@@ -3,11 +3,14 @@ package com.anet.archiveevents.view;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +37,9 @@ import com.anet.archiveevents.viewModel.AddEventViewModel;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class AddEventFragment extends Fragment {
     private RecyclerView mRecyclerView;
@@ -53,8 +59,8 @@ public class AddEventFragment extends Fragment {
     private static final int READ_EXTERNAL_STORAGE = 1;
     private LandMark newOne;
     private static final int REQUEST_CODE_PERMISSION = 2;
-    private static final int REQUEST_CODE_PICK_MEDIA = 1;
-
+   private static final int PICK_IMAGE_MULTIPLE = 1;
+    private static final int FILE_PICKER_REQUEST_CODE = 1;
     private GpsTracker gpsService;
 
 
@@ -151,9 +157,17 @@ public class AddEventFragment extends Fragment {
 
 
     private void pickVideo() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("video/*,image/*");
-        startActivityForResult(intent, REQUEST_CODE_PICK_MEDIA);
+
+        // initialising intent
+        Intent intent = new Intent();
+
+        // setting type to select to be image
+        intent.setType("*/*");
+
+        // allowing multiple image to be selected
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
     }
 
     @Override
@@ -171,13 +185,32 @@ public class AddEventFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_PICK_MEDIA && resultCode == RESULT_OK) {
-            Uri videoUri = data.getData();
-            if (videoUri != null) {
-                addEventViewModel.uploadVideo(videoUri);
+        if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK && null != data) {
+            ArrayList<Uri>mArrayUri=new ArrayList<>();
+            // Get the Image from data
+            if (data.getClipData() != null) {
+                ClipData mClipData = data.getClipData();
+                int cout = data.getClipData().getItemCount();
+                for (int i = 0; i < cout; i++) {
+                    // adding imageuri in array
+                    Uri imageurl = data.getClipData().getItemAt(i).getUri();
+                    mArrayUri.add(imageurl);
+                }
+                // setting 1st selected image into image switcher
+//                imageView.setImageURI(mArrayUri.get(0));
+//                position = 0;
             } else {
-                Toast.makeText(requireContext(), "Failed to retrieve video!", Toast.LENGTH_SHORT).show();
+                Uri imageurl = data.getData();
+                mArrayUri.add(imageurl);
+//                imageView.setImageURI(mArrayUri.get(0));
+//                position = 0;
+
             }
+            addEventViewModel.upLoadsFiles(mArrayUri);
+
+        } else {
+            // show this if no image is selected
+            Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
         }
     }
 

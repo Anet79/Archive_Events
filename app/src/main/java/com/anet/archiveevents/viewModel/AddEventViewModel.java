@@ -15,6 +15,8 @@ import com.anet.archiveevents.firebase.AuthenticationRepository;
 import com.anet.archiveevents.objects.LandMark;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+
 public class AddEventViewModel extends ViewModel {
 
     private MutableLiveData<String> date = new MutableLiveData<>();
@@ -105,12 +107,16 @@ public class AddEventViewModel extends ViewModel {
     }
 
 
-    public void uploadVideo(Uri videoUri) {
-        addEventRepository.uploadVideo(videoUri);
+    public void uploadVideo( ArrayList<Uri> list) {
+        addEventRepository.uploadVideo(list);
 
     }
 
     public LiveData<Boolean> getUploadStatusLiveData() {
         return addEventMutableLiveData;
+    }
+
+    public void upLoadsFiles(ArrayList<Uri> mArrayUri) {
+        addEventRepository.upLoadsFiles(mArrayUri);
     }
 }

@@ -15,6 +15,7 @@ public class SearchOnTheMapViewModel extends ViewModel {
 
     private SearchOnTheMapRepository searchOnTheMapRepository;
     private MutableLiveData<ArrayList<Event>> eventsSearch;
+
     private MutableLiveData<Boolean> haveItemInList;
 
 
@@ -32,6 +33,10 @@ public class SearchOnTheMapViewModel extends ViewModel {
         searchOnTheMapRepository.performSearch(newQuery);
 
 
+    }
+
+    public void saveCurrentEventForDataManager(Event event){
+        searchOnTheMapRepository.saveCurrentEventForDataManager(event);
     }
 
 

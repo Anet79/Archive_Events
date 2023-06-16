@@ -277,6 +277,8 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
 
     @Override
     public void onInfoWindowClick(@NonNull Marker marker) {
+
+
         Toast.makeText(requireContext(), "Click Info Window", Toast.LENGTH_SHORT).show();
 
     }

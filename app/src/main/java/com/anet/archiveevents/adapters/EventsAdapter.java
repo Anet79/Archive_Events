@@ -42,6 +42,11 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
      notifyDataSetChanged();
     }
 
+    public void setFilteredList(ArrayList<Event> filteredList){
+        this.events = filteredList;
+        notifyDataSetChanged();
+    }
+
     public EventsAdapter setEventClickListener(EventItemClicked eventsClickListener) {
         this.eventsClickListener = eventsClickListener;
         return this;

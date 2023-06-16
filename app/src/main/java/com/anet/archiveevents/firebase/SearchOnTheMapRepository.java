@@ -41,6 +41,10 @@ public class SearchOnTheMapRepository {
         return eventsSearch;
     }
 
+    public void saveCurrentEventForDataManager(Event event){
+        dataManager.setCurrentEvent(event);
+    }
+
     public MutableLiveData<Boolean> getHaveItemInList() {
         return haveItemInList;
     }

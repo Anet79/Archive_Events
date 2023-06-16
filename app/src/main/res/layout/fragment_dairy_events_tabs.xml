@@ -5,17 +5,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".view.DairyEventsFragment"
  >
-
+    <include layout="@layout/fragment_dairy_event"/>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/stroke_color"
-        tools:ignore="MissingConstraints">
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+       >
 
-<!--
+        <!--
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +33,6 @@
             android:layout_height="wrap_content"
             android:text="@string/all_my_favorite_events"/>
 -->
-
-
-
 
 
     </com.google.android.material.tabs.TabLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,6 +28,7 @@ import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.viewModel.AuthViewModel;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
+import com.anet.archiveevents.viewModel.SearchOnTheMapViewModel;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class DairyEventFragment extends Fragment  {
     private DairyEventViewModel dairyEventViewModel;
     private EventsAdapter eventsAdapter;
     private NavController navController;
+    private SearchView dairy_event_search_view;
 
 
     @Override
@@ -84,6 +87,19 @@ public class DairyEventFragment extends Fragment  {
 
         });
 
+        dairyEventViewModel.getAllEventsSearchData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+            @Override
+            public void onChanged(ArrayList<Event> searchEvents) {
+
+                if(!searchEvents.isEmpty()){
+                    eventsAdapter.setFilteredList(searchEvents);
+                }
+
+            }
+        });
+
+
+
         eventsAdapter.setEventClickListener(new EventItemClicked() {
             @Override
             public void eventClicked(Event event, int position) {
@@ -112,18 +128,29 @@ public class DairyEventFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
+        View view= inflater.inflate(R.layout.fragment_dairy_event, container, false);
       //  findViews(view);
 
 
+        dairy_event_search_view = view.findViewById(R.id.dairy_event_search_view);
 
+        dairy_event_search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                dairyEventViewModel.filterList(newText);
+                return true;
+            }
+        });
 
 
 
        // dairyEventViewModel.loadAllEvents();
-        return inflater.inflate(R.layout.fragment_dairy_event, container, false);
+        return view;
     }
 
 
