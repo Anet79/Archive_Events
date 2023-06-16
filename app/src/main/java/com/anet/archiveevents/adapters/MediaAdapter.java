@@ -28,11 +28,12 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
     public MediaAdapter() {
+        this.uriList= new ArrayList<>();
     }
 
-    public void setMedia(final ArrayList<String> events) {
+    public void setMedia(final ArrayList<String> uriList) {
         //  this.events.clear();
-     //   this.events = events;
+       this.uriList = uriList;
 
         notifyDataSetChanged();
     }

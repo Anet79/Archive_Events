@@ -262,8 +262,11 @@
 
                     >
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/show_event_RYC_all_media"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
 
