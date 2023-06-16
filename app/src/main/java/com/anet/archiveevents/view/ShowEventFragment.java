@@ -1,13 +1,19 @@
 package com.anet.archiveevents.view;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,8 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.anet.archiveevents.MediaItemClicked;
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.adapters.MediaAdapter;
@@ -26,6 +35,9 @@ import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.viewModel.ShowEventViewModel;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.File;
+import java.net.URLConnection;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class ShowEventFragment extends Fragment {
@@ -36,12 +48,14 @@ public class ShowEventFragment extends Fragment {
     private TextView show_event_view_details;
 
     private TextView show_event_view_title;
-    private MaterialButton show_event_view_BTN_save;
+    private MaterialButton show_event_view_BTN_close;
     private ShowEventViewModel showEventViewModel;
     private NavController navController;
     private MediaAdapter mediaAdapter;
     private RecyclerView show_event_RYC_all_media;
     private ArrayList<String> allMediaForOneEvent;
+
+    private ImageButton show_event_back_button;
 
 
 
@@ -50,11 +64,7 @@ public class ShowEventFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mediaAdapter=new MediaAdapter();
-        show_event_RYC_all_media.setLayoutManager(new LinearLayoutManager(getContext()));
-        show_event_RYC_all_media.setHasFixedSize(true);
-        show_event_RYC_all_media.setItemAnimator(new DefaultItemAnimator());
-        show_event_RYC_all_media.setAdapter(mediaAdapter);
+
 
 
 
@@ -81,22 +91,61 @@ public class ShowEventFragment extends Fragment {
 
         });
 
+
+
+
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
 
+
+
         navController= Navigation.findNavController(view);
         mediaAdapter=new MediaAdapter();
 
+        mediaAdapter=new MediaAdapter();
+        show_event_RYC_all_media.setLayoutManager(new LinearLayoutManager(getContext()));
+        show_event_RYC_all_media.setHasFixedSize(true);
+        show_event_RYC_all_media.setItemAnimator(new DefaultItemAnimator());
+        show_event_RYC_all_media.setAdapter(mediaAdapter);
+
+        mediaAdapter.setEventClickListener(new MediaItemClicked() {
+            @Override
+            public void mediaClicked(String media, int position) {
+                ContentResolver contentResolver= getContext().getContentResolver();
+                MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
+                String type=mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(Uri.parse(media)));
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                    intent.setType("*/*");
+                    intent.setData(Uri.parse(media));
+                    startActivity(intent);
+                }
 
 
-        show_event_view_BTN_save.setOnClickListener(new View.OnClickListener() {
+
+        });
+
+
+        show_event_view_BTN_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+            navController.popBackStack();
 
+
+
+            }
+        });
+
+        show_event_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //int destination= v.findViewById(R.layout.fragment_home_screen);
+                //NavOptions navOptions= new NavOptions.Builder().setPopUpTo(navController.navigate(R.id.action_showEventFragment_to_homeScreenFragment));
+                navController.popBackStack();
 
 
 
@@ -116,7 +165,9 @@ public class ShowEventFragment extends Fragment {
         show_event_view_area=view.findViewById(R.id.show_event_view_area);
         show_event_view_details=view.findViewById(R.id.show_event_view_details);
         show_event_view_title=view.findViewById(R.id.show_event_view_title);
-        show_event_view_BTN_save=view.findViewById(R.id.show_event_view_BTN_save);
+        show_event_view_BTN_close=view.findViewById(R.id.show_event_view_BTN_close);
+        show_event_back_button=view.findViewById(R.id.show_event_back_button);
+        navController = Navigation.findNavController(view);
         show_event_RYC_all_media= view.findViewById(R.id.show_event_RYC_all_media);
 
     }

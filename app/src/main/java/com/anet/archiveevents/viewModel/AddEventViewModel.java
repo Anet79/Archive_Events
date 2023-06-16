@@ -30,6 +30,8 @@ public class AddEventViewModel extends ViewModel {
     private MutableLiveData<Boolean> addEventMutableLiveData;
     private MutableLiveData<Boolean> addCompleteEventMutableLiveData;
 
+    private MutableLiveData<Boolean> eventAdded;
+
 
     public AddEventViewModel() {
 
@@ -38,7 +40,12 @@ public class AddEventViewModel extends ViewModel {
        // addEventMutableLiveData=addEventRepository.getAddEventMutableLiveData();
         addEventMutableLiveData=addEventRepository.getAddEventMutableLiveData();
         addCompleteEventMutableLiveData=addEventRepository.getAddCompleteEventMutableLiveData();
+        eventAdded=addEventRepository.getEventAdded();
 
+    }
+
+    public MutableLiveData<Boolean> getAddCompleteEventMutableLiveData() {
+        return addCompleteEventMutableLiveData;
     }
 
     public MutableLiveData<String> getDate() {
@@ -77,7 +84,13 @@ public class AddEventViewModel extends ViewModel {
         return category;
     }
 
+    public MutableLiveData<Boolean> getEventAdded() {
+        return eventAdded;
+    }
 
+    public void setEventAdded(MutableLiveData<Boolean> eventAdded) {
+        this.eventAdded = eventAdded;
+    }
 
     public void setCategory(String category) {
         this.category.setValue(category);

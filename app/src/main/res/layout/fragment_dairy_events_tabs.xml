@@ -8,13 +8,13 @@
 
     tools:context=".view.DairyEventsFragment"
  >
-    <include layout="@layout/fragment_dairy_event"/>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp"
        >
 
         <!--

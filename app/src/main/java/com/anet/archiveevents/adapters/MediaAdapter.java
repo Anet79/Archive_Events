@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anet.archiveevents.EventItemClicked;
+import com.anet.archiveevents.MediaItemClicked;
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.firebase.DataManager;
 import com.anet.archiveevents.objects.Event;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<String> uriList;
-    private EventItemClicked eventsClickListener;
+    private MediaItemClicked eventsClickListener;
     private DataManager dataManager=DataManager.getInstance();
 
 
@@ -43,7 +44,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 //        notifyDataSetChanged();
 //    }
 
-    public MediaAdapter setEventClickListener(EventItemClicked eventsClickListener) {
+    public MediaAdapter setEventClickListener(MediaItemClicked eventsClickListener) {
         this.eventsClickListener = eventsClickListener;
         return this;
     }
@@ -62,12 +63,15 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         // Bind data to views based on media type
         if (mediaType == MediaType.ANY_IMAGE_TYPE) {
+            String fileName = getFileName(uri);
+            listViewHolder.content_media_LBL_media_name.setText(fileName);
 
             listViewHolder.content_media_IMG_picture.setImageResource(R.drawable.ic_picture);
 
         } else if (mediaType == MediaType.ANY_VIDEO_TYPE) {
             listViewHolder.content_media_IMG_picture.setImageResource(R.drawable.ic_video);
-            listViewHolder.content_media_LBL_media_name.setText("Video");
+            String fileName = getFileName(uri);
+            listViewHolder.content_media_LBL_media_name.setText(fileName);
 
 //            Uri videoUri = Uri.parse(uri);
 //            holder.videoView.setVideoURI(videoUri);
@@ -80,7 +84,9 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             listViewHolder.content_media_LBL_media_name.setText(fileName);
         }
         else {
+            String fileName = getFileName(uri);
             listViewHolder.content_media_IMG_picture.setImageResource(R.drawable.ic_video);
+            listViewHolder.content_media_LBL_media_name.setText(fileName);
         }
 
 
@@ -128,6 +134,9 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
+    public String getMedia(int position){
+        return uriList.get(position);
+    }
 
     private class MediaViewHolder  extends RecyclerView.ViewHolder {
 
@@ -144,7 +153,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mediaView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   // eventsClickListener.eventClicked(getEvent(getAdapterPosition()), getAdapterPosition());
+                    eventsClickListener.mediaClicked(getMedia(getAdapterPosition()), getAdapterPosition());
 
 
                 }

@@ -44,6 +44,8 @@ public class AddEventRepository {
 
     private DataManager dataManager;
 
+    private MutableLiveData<Boolean> eventAdded;
+
 
     public AddEventRepository() {
         newEvent = new MutableLiveData<>();
@@ -55,12 +57,20 @@ public class AddEventRepository {
         addCompleteEventMutableLiveData = new MutableLiveData<>();
         allMediaArrayList=new ArrayList<>();
 
+        dataManager= DataManager.getInstance();
+        addCompleteEventMutableLiveData=new MutableLiveData<>();
+        eventAdded = new MutableLiveData<>();
+
 
     }
 
 
     public MutableLiveData<Boolean> getAddCompleteEventMutableLiveData() {
         return addCompleteEventMutableLiveData;
+    }
+
+    public MutableLiveData<Boolean> getEventAdded() {
+        return eventAdded;
     }
 
     public MutableLiveData<Event> getNewEvent() {
@@ -82,11 +92,11 @@ public class AddEventRepository {
 
     public void uploadVideo(ArrayList<Uri> list) {
 
-        StorageReference videoRef = storage.getReference().child("videos/");
         if (!list.isEmpty()) {
             for (Uri uri : list) {
                 // save the selected video in Firebase storage
-                //   final StorageReference reference = FirebaseStorage.getInstance().getReference("Files/" + System.currentTimeMillis() + "." + getfiletype(videouri));
+                StorageReference videoRef = storage.getReference().child("videos/");
+
                 videoRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -128,6 +138,7 @@ public class AddEventRepository {
 
         DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         DatabaseReference myRef01 = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_FOR_LAND_MARKS);
+        StorageReference reference = FirebaseStorage.getInstance().getReference("Files/" + System.currentTimeMillis() );
 
 
         // if(addEventMutableLiveData.getValue()==true) {
@@ -136,11 +147,18 @@ public class AddEventRepository {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
+
+
                 addCompleteEventMutableLiveData.setValue(true);
 
 
             }
         });
+
+
+        //reference.child(newEvent.getEventUID()).listAll(allEventMedia).
+
+
 
 
 /*            myRef01.child(landMark.toString()).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -166,15 +184,17 @@ public class AddEventRepository {
             int counter = 0;
             // final String firebasePushID = firestore.collection(currentUser.getUid()).document().getId();
             for (int i = 0; i < list.size(); i++) {
+                StorageReference videoRef1 = videoRef.child(i+"23");
+
                 Uri perFile = list.get(i);
                 counter++;
                 final int finalCounter = counter;
                 final int finalI = i;
-                videoRef.putFile(perFile).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                videoRef1.putFile(perFile).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            videoRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            videoRef1.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
                                     if (task.isSuccessful()) {

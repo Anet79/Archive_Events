@@ -33,8 +33,7 @@ public class PagerAdapterFoeDairyEvents extends FragmentStateAdapter {
 
             case 1:
                 return new DairyEventsMyEventsFragment();
-            case 2:
-                return new DairyEventsMyFavoritesFragment();
+
             default:
                 return null;
 
@@ -45,7 +44,7 @@ public class PagerAdapterFoeDairyEvents extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 
 
@@ -60,8 +59,7 @@ public class PagerAdapterFoeDairyEvents extends FragmentStateAdapter {
                 return "My Favorite";
             case 1:
                 return "My Event";
-            case 2:
-                return "All Events";
+
             default:
                 return null;
         }

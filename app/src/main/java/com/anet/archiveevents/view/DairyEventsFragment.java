@@ -54,9 +54,9 @@ public class DairyEventsFragment extends Fragment {
 
         viewPager =view.findViewById(R.id.viewPager);
         tabLayout=view.findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("All Events"));
-        tabLayout.addTab(tabLayout.newTab().setText("My Events"));
-        tabLayout.addTab(tabLayout.newTab().setText("My Favorite Events"));
+        tabLayout.addTab(tabLayout.newTab().setText("כל האירועים"));
+        tabLayout.addTab(tabLayout.newTab().setText("האירועים שלי"));
+       // tabLayout.addTab(tabLayout.newTab().setText("My Favorite Events"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         PagerAdapterFoeDairyEvents pagerAdapter = new PagerAdapterFoeDairyEvents(this.getActivity());
         viewPager.setAdapter(pagerAdapter);
