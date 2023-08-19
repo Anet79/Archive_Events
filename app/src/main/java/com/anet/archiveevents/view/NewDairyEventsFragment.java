@@ -36,6 +36,8 @@ public class NewDairyEventsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+
+
     }
 
     @Override

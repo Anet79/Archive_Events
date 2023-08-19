@@ -5,14 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.firebase.DataManager;
@@ -23,6 +28,8 @@ import com.bumptech.glide.Glide;
 
 public class ProfilePageFragment extends Fragment {
     private ImageView recipe_item_IMG_img;
+
+    private  ActionBar actionBar;
     private TextView profile_page_name;
     private TextView profile_page_role;
     private TextView profile_page_phone_number;
@@ -30,12 +37,31 @@ public class ProfilePageFragment extends Fragment {
     private TextView profile_page_location;
     private DataManager dataManager;
 
+    private ImageButton profile_back_button;
+
+    private NavController navController;
+
+
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataManager=DataManager.getInstance();
+
+        /*AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();*/
+
+
+
+        // providing title for the ActionBar
+       // actionBar.setTitle("פרופיל");
+
+
+        /*actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);*/
+
 
     }
 
@@ -53,8 +79,17 @@ public class ProfilePageFragment extends Fragment {
         findViews(view);
         initData();
 
+        profile_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.popBackStack();
+            }
+        });
+
 
     }
+
+
 
     private void initData() {
         profile_page_name.setText( dataManager.getCurrentUser().getRank() +dataManager.getCurrentUser().getFullName());
@@ -78,5 +113,9 @@ public class ProfilePageFragment extends Fragment {
         profile_page_email = view.findViewById(R.id.profile_page_email);
         profile_page_location = view.findViewById(R.id.profile_page_location);
         recipe_item_IMG_img = view.findViewById(R.id.recipe_item_IMG_img);
+        profile_back_button=view.findViewById(R.id.profile_back_button);
+        navController = Navigation.findNavController(view);
     }
+
+
 }

@@ -24,6 +24,7 @@
 <!--        tools:ignore="MissingConstraints">-->
 
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -35,7 +36,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry">
+            tools:ignore="RtlSymmetry"
+            >
 
 
             <LinearLayout
@@ -48,7 +50,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints,RtlSymmetry">
+                <LinearLayout
+                    android:id="@+id/add_event_LRT_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:background="@color/stroke_color_for_profile"
+                    android:orientation="horizontal">
 
+
+                    <ImageButton
+                        android:id="@+id/add_complaint_back_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_back_button" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_complaint_title"
+                        android:textSize="35sp"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/add_event_LRT_1"
                     android:layout_width="match_parent"

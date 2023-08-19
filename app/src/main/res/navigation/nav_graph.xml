@@ -55,7 +55,12 @@
     <fragment
         android:id="@+id/addEventFragment"
         android:name="com.anet.archiveevents.view.AddEventFragment"
-        android:label="AddEventFragment" />
+        android:label="AddEventFragment" >
+        <action
+            android:id="@+id/action_addEventFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.anet.archiveevents.view.HomeScreenFragment"
@@ -95,6 +100,9 @@
         <action
             android:id="@+id/action_dairyEventFragment_to_showEventFragment"
             app:destination="@id/showEventFragment" />
+        <action
+            android:id="@+id/action_dairyEventFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/dairyEventsFragment2"
@@ -117,10 +125,18 @@
         android:id="@+id/showEventFragment"
         android:name="com.anet.archiveevents.view.ShowEventFragment"
         android:label="fragment_show_event"
-        tools:layout="@layout/fragment_show_event" />
+        tools:layout="@layout/fragment_show_event" >
+        <action
+            android:id="@+id/action_showEventFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchOnTheMapFragment"
         android:name="com.anet.archiveevents.view.SearchOnTheMapFragment"
         android:label="fragment_search_on_the_map"
-        tools:layout="@layout/fragment_search_on_the_map" />
+        tools:layout="@layout/fragment_search_on_the_map" >
+        <action
+            android:id="@+id/action_searchOnTheMapFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
 </navigation>

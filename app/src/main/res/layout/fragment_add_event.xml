@@ -11,29 +11,24 @@
     android:clipToOutline="true"
     android:supportsRtl="true"
     tools:ignore="RtlEnabled"
-
+    tools:context = ".MainActivity"
     >
 
 
-
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:ignore="MissingConstraints">-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/background_for_connect"
             android:elevation="80dp"
             android:orientation="vertical"
-            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +38,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
 
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,6 +46,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints,RtlSymmetry">
+
+
+                <LinearLayout
+                    android:id="@+id/add_event_LRT_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/stroke_color_for_profile"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+
+                    <ImageButton
+                        android:id="@+id/back_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_back_button" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_event_title"
+                        android:textAppearance="?android:textAppearanceMedium"
+
+                        android:textSize="35sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/add_event_LRT_1"
@@ -88,22 +115,20 @@
 
                             app:useCompatPadding="false" />
 
-<!--                        &lt;!&ndash; Rectangle 1 &ndash;&gt;-->
-<!--                        <EditText-->
-<!--                            android:id="@+id/add_event_EDT_location"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:background="@color/white"-->
-<!--                            android:textStyle="normal"-->
+                        <!--                        &lt;!&ndash; Rectangle 1 &ndash;&gt;-->
+                        <!--                        <EditText-->
+                        <!--                            android:id="@+id/add_event_EDT_location"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:background="@color/white"-->
+                        <!--                            android:textStyle="normal"-->
 
-<!--                            android:textColorHint="@color/black"-->
-<!--                            android:hint="@string/location"-->
-<!--                            android:padding="15dp" />-->
-
+                        <!--                            android:textColorHint="@color/black"-->
+                        <!--                            android:hint="@string/location"-->
+                        <!--                            android:padding="15dp" />-->
 
 
                     </com.google.android.material.card.MaterialCardView>
-
 
 
                     <com.google.android.material.card.MaterialCardView
@@ -111,13 +136,13 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="100dp"
 
-                        app:strokeWidth="2dp"
-
-
                         android:layout_marginRight="30dp"
+
+
                         android:layout_weight="1"
+                        app:cardCornerRadius="10dp"
                         app:strokeColor="@color/color_for_login_fields"
-                        app:cardCornerRadius="10dp">
+                        app:strokeWidth="2dp">
 
                         <!-- Rectangle 1 -->
                         <EditText
@@ -125,10 +150,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/white"
-                            android:textColorHint="@color/black"
+                            android:hint="@string/category"
                             android:padding="15dp"
 
-                            android:hint="@string/category" />
+                            android:textColorHint="@color/black" />
 
 
                     </com.google.android.material.card.MaterialCardView>
@@ -163,10 +188,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/white"
-                            android:textColorHint="@color/black"
+                            android:hint="@string/area"
                             android:padding="15dp"
 
-                            android:hint="@string/area" />
+                            android:textColorHint="@color/black" />
 
 
                     </com.google.android.material.card.MaterialCardView>
@@ -174,25 +199,25 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:padding="20dp"
                         android:layout_marginLeft="100dp"
-
-                        app:strokeWidth="2dp"
-
-
                         android:layout_marginRight="30dp"
+
                         android:layout_weight="1"
+
+
+                        android:padding="20dp"
+                        app:cardCornerRadius="10dp"
                         app:strokeColor="@color/color_for_login_fields"
-                        app:cardCornerRadius="10dp">
+                        app:strokeWidth="2dp">
                         <!-- Rectangle 1 -->
                         <EditText
                             android:id="@+id/add_event_EDT_title"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/white"
-                            android:textColorHint="@color/black"
+                            android:hint="@string/title"
                             android:padding="15dp"
-                            android:hint="@string/title" />
+                            android:textColorHint="@color/black" />
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -211,22 +236,23 @@
                         android:id="@+id/some_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:layout_marginRight="34dp"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
                         android:gravity="right"
                         android:text="@string/content_event"
                         android:textColor="@color/black"
 
                         android:textSize="30sp" />
+
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:strokeWidth="2dp"
+                        android:layout_marginRight="30dp"
                         android:elevation="40dp"
                         app:cardCornerRadius="10dp"
-                        android:layout_marginRight="30dp"
-                        app:strokeColor="@color/color_for_login_fields">
+                        app:strokeColor="@color/color_for_login_fields"
+                        app:strokeWidth="2dp">
 
                         <EditText
                             android:id="@+id/add_event_EDT_details"
@@ -234,16 +260,13 @@
                             android:layout_height="136dp"
                             android:background="@color/white"
 
-                            android:padding="20dp"
                             android:maxLines="10"
-
-
+                            android:padding="20dp"
 
 
                             />
 
                     </com.google.android.material.card.MaterialCardView>
-
 
 
                 </LinearLayout>
@@ -260,22 +283,22 @@
                         android:id="@+id/upload"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:layout_marginRight="40dp"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
                         android:gravity="right"
                         android:text="@string/upload_media"
                         android:textColor="@color/black"
 
-                        android:textSize="30sp"  />
+                        android:textSize="30sp" />
 
                     <LinearLayout
                         android:id="@+id/add_event_LRT_upload"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginRight="40dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="40dp"
                         android:background="@drawable/upload"
                         android:clickable="true"
                         android:gravity="center"
@@ -306,11 +329,11 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <ImageView
+                            <!--       <ImageView
                                 android:layout_width="34dp"
                                 android:layout_height="34dp"
                                 android:src="@drawable/ic_video"/>
-
+-->
 
                         </LinearLayout>
 
@@ -326,11 +349,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
+                    android:padding="10dp"
                     android:shadowRadius="2"
                     android:text="@string/save"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:padding="10dp"
                     android:textStyle="bold"
                     app:strokeColor="@color/color_for_login_fields"
                     app:strokeWidth="2dp" />
@@ -339,7 +362,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-<!--    </ScrollView>-->
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

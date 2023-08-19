@@ -20,6 +20,10 @@ public class AddComplineViewModel extends ViewModel {
 
     }
 
+    public MutableLiveData<Boolean> getAddCompleteComplineMutableLiveData() {
+        return addCompleteComplineMutableLiveData;
+    }
+
     public void saveCompline(String title, String mail, String name, String content) {
 
 

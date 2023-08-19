@@ -85,4 +85,10 @@
     <string name="madia">מולטימדיה</string>
 
 
+    <!-- HEADLINES-->
+    <string name="add_event_title">הוספת אירוע חדש</string>
+    <string name="dairy_event_title">יומן אירועים</string>
+    <string name="add_complaint_title">צור איתנו קשר</string>
+    <string name="profile_title">פרופיל</string>
+    <string name="show_event_title">פרטי אירוע</string>
 </resources>

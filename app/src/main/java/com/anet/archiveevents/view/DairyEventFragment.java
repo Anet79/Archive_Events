@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,7 +30,6 @@ import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.viewModel.AuthViewModel;
 import com.anet.archiveevents.viewModel.DairyEventViewModel;
-import com.anet.archiveevents.viewModel.SearchOnTheMapViewModel;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;

@@ -49,7 +49,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints,RtlSymmetry">
+            <LinearLayout
+                android:id="@+id/add_event_LRT_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:background="@color/stroke_color_for_profile"
+                android:orientation="horizontal">
 
+
+                <ImageButton
+                    android:id="@+id/show_event_back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_back_button" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_event_title"
+                    android:textSize="35sp"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textStyle="bold"/>
+
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/show_event_view_LRT_1"
                 android:layout_width="match_parent"
@@ -276,7 +303,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/show_event_view_BTN_save"
+                android:id="@+id/show_event_view_BTN_close"
                 style="@style/MyButton"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

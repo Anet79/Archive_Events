@@ -102,11 +102,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
 
                         break;
-                    case R.id.search:
+              /*      case R.id.search:
                         navController.navigate(R.id.action_homeScreenFragment_to_searchOnTheMapFragment);
 
 
-                        break;
+                        break;*/
                     // add event flow
                     case R.id.add:
                         navController.navigate(R.id.action_homeScreenFragment_to_addEventFragment);
@@ -116,6 +116,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
                     // view profile page
                     case R.id.user_profile:
                         navController.navigate(R.id.action_homeScreenFragment_to_profilePageFragment);
+
+
+                        break;
+                    case R.id.customer_support:
+                        navController.navigate(R.id.action_homeScreenFragment_to_addComplineFragment);
 
 
                         break;

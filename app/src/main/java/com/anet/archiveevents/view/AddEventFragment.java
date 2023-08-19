@@ -3,30 +3,44 @@ package com.anet.archiveevents.view;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -35,7 +49,12 @@ import com.anet.archiveevents.objects.GpsTracker;
 import com.anet.archiveevents.objects.LandMark;
 import com.anet.archiveevents.viewModel.AddEventViewModel;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.Objects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +71,8 @@ public class AddEventFragment extends Fragment {
     private EditText add_event_EDT_area;
     private EditText add_event_EDT_details;
     private Button add_event_BTN_save;
+
+    private ImageButton back_button;
     private FloatingActionButton add_event_location;
     private AddEventViewModel addEventViewModel;
     private LinearLayout add_event_LRT_upload;
@@ -62,6 +83,10 @@ public class AddEventFragment extends Fragment {
    private static final int PICK_IMAGE_MULTIPLE = 1;
     private static final int FILE_PICKER_REQUEST_CODE = 1;
     private GpsTracker gpsService;
+    private BottomNavigationView bottom_navigation;
+
+   private MaterialToolbar topAppBar;
+
 
 
 
@@ -70,6 +95,10 @@ public class AddEventFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // getActivity().setContentView(R.layout.fragment_add_event);
+
+
+
 
     }
 
@@ -111,9 +140,73 @@ public class AddEventFragment extends Fragment {
 
 
                 if(!content.isEmpty()&&!title.isEmpty()&&!category.isEmpty()){
+
                     addEventViewModel.saveEvent(title,category,newOne,content,area);
+                    addEventViewModel.getAddCompleteEventMutableLiveData().observe(getActivity(), new Observer<Boolean>() {
+                        @Override
+                        public void onChanged(Boolean aBoolean) {
+                            if(aBoolean){
+                                showSeccessDialog(view);
+                            }else {
+                                showErrorDialog(view);
+                            }
+                        }
+                    });
+
+                }else{
+                    showErrorDialog(view);
                 }
 
+
+            }
+
+            private void showErrorDialog(View view) {
+
+                ConstraintLayout errorConstraintLayout=getActivity().findViewById(R.id.errorConstraintLayout);
+                View view1=LayoutInflater.from(getContext()).inflate(R.layout.error_dialog,errorConstraintLayout);
+                Button errorDone= view1.findViewById(R.id.errorDone);
+
+                AlertDialog.Builder builder=  new AlertDialog.Builder(getContext());
+                builder.setView(view1);
+                final  AlertDialog alertDialog=builder.create();
+
+                errorDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.dismiss();
+                        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                        navController.popBackStack();
+                    }
+                });
+
+                if(alertDialog.getWindow() != null){
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                }
+                alertDialog.show();
+            }
+
+            private void showSeccessDialog(View view) {
+                ConstraintLayout successConstraintLayout=getActivity().findViewById(R.id.successConstraintLayout);
+                View view1=LayoutInflater.from(getContext()).inflate(R.layout.success_dialog,successConstraintLayout);
+                Button successDone= view1.findViewById(R.id.successDone);
+
+                AlertDialog.Builder builder=  new AlertDialog.Builder(getContext());
+                builder.setView(view1);
+                final  AlertDialog alertDialog=builder.create();
+
+                successDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.dismiss();
+                        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                        navController.popBackStack();
+                    }
+                });
+
+                if(alertDialog.getWindow() != null){
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                }
+                alertDialog.show();
             }
         });
         add_event_LRT_upload.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +214,17 @@ public class AddEventFragment extends Fragment {
             public void onClick(View v) {
               //  checkPermissionAndPickVideo();
                 pickVideo();
+
+            }
+        });
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  checkPermissionAndPickVideo();
+                /*navController.navigate(R.id.action_addEventFragment_to_homeScreenFragment);
+                getActivity().finish();*/
+                navController.popBackStack();
 
             }
         });
@@ -140,6 +244,10 @@ public class AddEventFragment extends Fragment {
 
     }
 
+    private void onBackPressed() {
+
+    }
+
 
     private void findViews(View view) {
         add_event_EDT_category = view.findViewById(R.id.add_event_EDT_category);
@@ -150,6 +258,7 @@ public class AddEventFragment extends Fragment {
         add_event_LRT_upload=view.findViewById(R.id.add_event_LRT_upload);
         add_event_EDT_area=view.findViewById(R.id.add_event_EDT_area);
         add_event_location=view.findViewById(R.id.add_event_location);
+        back_button = view.findViewById(R.id.back_button);
         navController = Navigation.findNavController(view);
 
     }

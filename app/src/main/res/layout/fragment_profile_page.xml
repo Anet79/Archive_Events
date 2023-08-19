@@ -8,7 +8,34 @@
     android:supportsRtl="true"
     tools:context=".view.ProfilePageFragment"
     tools:ignore="RtlEnabled">
+    <LinearLayout
+        android:id="@+id/add_event_LRT_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@color/stroke_color_for_profile"
+        android:orientation="horizontal">
 
+
+        <ImageButton
+            android:id="@+id/profile_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_back_button" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_title"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="13dp">
+
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/profile_FAB_profile_edit"
