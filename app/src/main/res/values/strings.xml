@@ -1,13 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Archive Events</string>
-    <string name="category">קטגוריה </string>
-    <string name="location">מיקום </string>
-    <string name="title">כותרת </string>
-    <string name="content_event">תוכן הדיווח</string>
+    <string name="category">קטגוריה: </string>
+    <string name="location">מיקום (רוחב,אורך): </string>
+    <string name="title">כותרת: </string>
+    <string name="content_event">תוכן הדיווח </string>
     <string name="upload_media">העלאת מדיה</string>
     <string name="save">אישור</string>
     <string name="import_media">ייבוא מדיה</string>
-    <string name="area">אזור </string>
+    <string name="area">אזור: </string>
 
 
     <!-- profile page -->

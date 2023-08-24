@@ -36,7 +36,8 @@ public class LandMark {
         double var1 = this.latitude;
         double var3 = this.longitude;
         StringBuilder var5 = new StringBuilder();
-        var5.append("lat/lng: (");
+        // var5.append("lat/lng: (");
+        var5.append(" (");
         var5.append(var1);
         var5.append(",");
         var5.append(var3);

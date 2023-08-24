@@ -87,7 +87,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="100dp"
@@ -117,7 +117,8 @@
                             android:layout_marginTop="20dp"
 
                             android:layout_weight="1"
-                            android:maxLines="1"
+                           android:layout_marginLeft="2dp"
+
                             android:text="@string/location"
                             android:textColor="@color/black"
                             android:textSize="20sp"
@@ -129,7 +130,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_weight="1"
 
-                            android:drawablePadding="15dp"
+
                             android:maxLines="1"
                             android:text="@string/location"
                             android:textColor="@color/black"
@@ -146,7 +147,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="100dp"
                     app:cardCornerRadius="10dp"
@@ -217,7 +218,7 @@
                 >
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="100dp"
@@ -272,7 +273,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="100dp"
                     android:layout_marginRight="30dp"
@@ -336,7 +337,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+
                 android:orientation="vertical">
 
 
@@ -345,9 +346,9 @@
                     android:id="@+id/some_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="34dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="right"
                     android:text="@string/content_event"
                     android:textColor="@color/black"
@@ -360,6 +361,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:elevation="40dp"
+                    android:layout_marginLeft="10dp"
                     app:cardCornerRadius="10dp"
                     app:strokeColor="@color/color_for_login_fields"
                     app:strokeWidth="2dp">
@@ -369,6 +371,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="136dp"
                         android:background="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
 
@@ -384,6 +387,7 @@
             </LinearLayout>
 
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -395,41 +399,51 @@
                     android:id="@+id/upload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="40dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="right"
                     android:text="@string/madia"
                     android:textColor="@color/black"
 
                     android:textSize="30sp" />
 
-                <LinearLayout
-                    android:id="@+id/add_event_LRT_upload"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="40dp"
-
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
 
 
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                    >
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/show_event_RYC_all_media"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/add_event_LRT_upload"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="40dp"
 
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
 
 
-                </LinearLayout>
 
+                        >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/show_event_RYC_all_media"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+                    </LinearLayout>
+
+
+
+            </ScrollView>
 
             </LinearLayout>
 
