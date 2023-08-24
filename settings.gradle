@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Archive Events"
 include ':app'
+include ':graphModule'

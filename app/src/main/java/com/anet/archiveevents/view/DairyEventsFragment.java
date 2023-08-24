@@ -56,8 +56,11 @@ public class DairyEventsFragment extends Fragment {
         tabLayout=view.findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("כל האירועים"));
         tabLayout.addTab(tabLayout.newTab().setText("האירועים שלי"));
-       // tabLayout.addTab(tabLayout.newTab().setText("My Favorite Events"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        // Set TabLayout mode
+        tabLayout.setTabMode(TabLayout.MODE_FIXED); // or MODE_FIXED
+
+        // tabLayout.addTab(tabLayout.newTab().setText("My Favorite Events"));
+       // tabLayout.setTabGravity(TabLayout.GRAVITY_START);
         PagerAdapterFoeDairyEvents pagerAdapter = new PagerAdapterFoeDairyEvents(this.getActivity());
         viewPager.setAdapter(pagerAdapter);
      //   viewPager.addOnLayoutChangeListener((View.OnLayoutChangeListener) new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -69,22 +72,7 @@ public class DairyEventsFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
 
-//                // Pass the array type based on the position
-//                switch (tab.getPosition()) {
-//                    case 0:
-//                        dairyEventViewModel.getEventList("0");
-//
-//                        break;
-//                    case 1:
-//                        dairyEventViewModel.getEventList("1");
-//
-//                        break;
-//                    case 2:
-//
-////                        dairyEventViewModel.getEventList("2");
-//
-//                        break;
-//                }
+
             }
 
             @Override
@@ -101,7 +89,7 @@ public class DairyEventsFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                tabLayout.getTabAt(position).select();
+                tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
 

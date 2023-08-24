@@ -1,75 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_card_01"
         android:elevation="7dp"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent">
 
 
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
-
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/event_map_IMG_folder_picture"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:padding="4dp"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/ic_location_home_screen"
-
-
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="4dp"
-            >
+            android:gravity="right"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/event_map_LBL_event_name"
+
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:padding="4dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/event_map_LBL_event_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="4dp"
+                    android:text="@string/title"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/event_map_LBL_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/content_event"
+                    android:textColor="#020202"
+                    android:textSize="10sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/event_map_LBL_created_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="dd-mm-yyyy"
+                    android:textColor="#020202"
+                    android:textSize="10sp" />
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/event_map_IMG_folder_picture"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:paddingTop="4dp"
-                android:text="@string/title"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/event_map_LBL_content"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/content_event"
-                android:textColor="#020202"
-                android:textSize="10sp" />
+                android:layout_marginStart="5dp"
+                android:padding="4dp"
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/event_map_LBL_created_date"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="dd-mm-yyyy"
-                android:textColor="#020202"
-                android:textSize="10sp" />
+                android:src="@drawable/ic_location_home_screen"
 
 
-        </LinearLayout>
+                />
 
 
-
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,6 +65,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         Event event = getEvent(position);
 
         listViewHolder.report_page_category.setText(String.format("%s",event.getCategory()));
+        listViewHolder.report_page_created_date.setText(String.format("%s",event.getEventDate()));
         listViewHolder.report_page_report_header.setText(String.format("%s",event.getTitle()));
         listViewHolder.report_page_content_event.setText(String.format("%s",event.getContent()));
 
@@ -90,16 +91,19 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private class ListViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView report_page_category;
+        public TextView report_page_category;
         public TextView report_page_report_header;
         public TextView report_page_content_event;
         public TextView report_page_name;
+        public TextView report_page_created_date;
         public  ImageView report_page_IMG_user;
+
 
 
         public ListViewHolder(View eventView) {
             super(eventView);
             this.report_page_category = eventView.findViewById(R.id.report_page_category);
+            this.report_page_created_date=eventView.findViewById(R.id.report_page_created_date);
             this.report_page_report_header= eventView.findViewById(R.id.report_page_report_header);
             this.report_page_content_event= eventView.findViewById(R.id.report_page_content_event);
             this.report_page_name= eventView.findViewById(R.id.report_page_name);

@@ -31,7 +31,7 @@
         android:background="@drawable/background_for_connect"
         android:elevation="80dp"
         android:orientation="vertical"
-        app:cardCornerRadius="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,6 @@
                 android:id="@+id/add_event_LRT_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:padding="5dp"
                 android:background="@color/stroke_color_for_profile"
                 android:orientation="horizontal">
