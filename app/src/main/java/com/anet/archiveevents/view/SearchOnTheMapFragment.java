@@ -99,16 +99,15 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                searchOnTheMapViewModel.performSearch(query);
-
-
-                return true;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Handle text changes in the search view if needed
-                return false;
+                searchOnTheMapViewModel.performSearch(newText);
+
+
+                return true;
             }
         });
         mapFragment.getMapAsync(this);
@@ -182,6 +181,12 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
     }
 
     private void addMarkersToMap() {
+
+//        for (Marker marker : searchResultMarkers) {
+//            marker.remove();
+//        }
+
+        searchResultMarker.remove();
 
         for (int i = 0; i < eventsToShow.size(); i++) {
 
