@@ -132,7 +132,9 @@ public class ShowEventFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-            navController.popBackStack();
+             //   navController.navigate(R.id.action_showEventFragment_to_homeScreenFragment);
+
+         navController.popBackStack("@id/homeScreenFragment",true);
 
 
 
@@ -143,7 +145,6 @@ public class ShowEventFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //int destination= v.findViewById(R.layout.fragment_home_screen);
                 //NavOptions navOptions= new NavOptions.Builder().setPopUpTo(navController.navigate(R.id.action_showEventFragment_to_homeScreenFragment));
                 navController.popBackStack();
 

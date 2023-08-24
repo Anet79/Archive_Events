@@ -7,10 +7,10 @@
     android:id="@+id/report_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ShowEventFragment"
-
     android:clipToOutline="true"
+
     android:supportsRtl="true"
+    tools:context=".view.ShowEventFragment"
     tools:ignore="RtlEnabled"
 
     >
@@ -49,13 +49,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints,RtlSymmetry">
+
             <LinearLayout
                 android:id="@+id/add_event_LRT_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:background="@color/stroke_color_for_profile"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <ImageButton
@@ -70,17 +71,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/show_event_title"
-                    android:textSize="35sp"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textStyle="bold"/>
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/show_event_view_LRT_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
@@ -88,24 +91,57 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="100dp"
+
                     android:layout_weight="1"
                     android:elevation="40dp"
-
                     app:cardCornerRadius="10dp"
-                    app:strokeColor="@color/color_for_login_fields"
-                    app:strokeWidth="2dp">
+                    app:strokeColor="@color/stroke_color"
+                    app:strokeWidth="3dp">
 
-                    <!-- Rectangle 1 -->
-                    <TextView
-                        android:id="@+id/show_event_view_location"
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:textStyle="normal"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="7dp"
+                        android:orientation="horizontal"
 
-                        android:textColorHint="@color/black"
-                        android:hint="@string/location"
-                        android:padding="15dp" />
+
+
+                        >
+                        <!-- Rectangle 1 -->
+                        <TextView
+                            android:id="@+id/show_event_view_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/location"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+
+                            android:drawablePadding="15dp"
+                            android:maxLines="1"
+                            android:text="@string/location"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+
+                            />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -113,25 +149,57 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="100dp"
-
-                    app:strokeWidth="2dp"
-
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/stroke_color"
+                    app:strokeWidth="3dp"
 
                     android:layout_marginRight="30dp"
+
                     android:layout_weight="1"
-                    app:strokeColor="@color/color_for_login_fields"
-                    app:cardCornerRadius="10dp">
-
-                    <!-- Rectangle 1 -->
-                    <TextView
-                        android:id="@+id/show_event_view_category"
+                   >
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:textColorHint="@color/black"
-                        android:padding="15dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="7dp"
 
-                        android:hint="@string/category" />
+                        >
+
+                        <!-- Rectangle 1 -->
+                        <TextView
+                            android:id="@+id/show_event_view_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/category"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+
+                            android:drawablePadding="15dp"
+                            android:maxLines="1"
+                            android:text="@string/category"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+
+                            />
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -157,19 +225,48 @@
                     android:elevation="40dp"
 
                     app:cardCornerRadius="10dp"
-                    app:strokeColor="@color/color_for_login_fields"
-                    app:strokeWidth="2dp">
+                    app:strokeColor="@color/stroke_color"
+                    app:strokeWidth="3dp">
 
-                    <!-- Rectangle 1 -->
-                    <TextView
-                        android:id="@+id/show_event_view_area"
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:textColorHint="@color/black"
-                        android:padding="15dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="7dp"
 
-                        android:hint="@string/area" />
+                        >
+                        <!-- Rectangle 1 -->
+                        <TextView
+                            android:id="@+id/show_event_view_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/area"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+
+                            android:drawablePadding="15dp"
+                            android:maxLines="1"
+                            android:text="@string/area"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+
+                            />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -177,25 +274,59 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:padding="20dp"
                     android:layout_marginLeft="100dp"
-
-                    app:strokeWidth="2dp"
-
-
                     android:layout_marginRight="30dp"
+
                     android:layout_weight="1"
-                    app:strokeColor="@color/color_for_login_fields"
-                    app:cardCornerRadius="10dp">
-                    <!-- Rectangle 1 -->
-                    <TextView
-                        android:id="@+id/show_event_view_title"
+
+
+                    android:padding="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/stroke_color"
+                    app:strokeWidth="3dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:textColorHint="@color/black"
-                        android:padding="15dp"
-                        android:hint="@string/title" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="7dp"
+
+
+                        >
+                        <!-- Rectangle 1 -->
+                        <TextView
+                            android:id="@+id/show_event_view_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/title"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+
+                            android:drawablePadding="15dp"
+                            android:maxLines="1"
+                            android:text="@string/title"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+
+                            />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -214,39 +345,40 @@
                     android:id="@+id/some_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="34dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
                     android:gravity="right"
                     android:text="@string/content_event"
                     android:textColor="@color/black"
 
+
                     android:textSize="30sp" />
+
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:strokeWidth="2dp"
+                    android:layout_marginRight="30dp"
                     android:elevation="40dp"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginRight="30dp"
-                    app:strokeColor="@color/color_for_login_fields">
+                    app:strokeColor="@color/color_for_login_fields"
+                    app:strokeWidth="2dp">
 
                     <TextView
                         android:id="@+id/show_event_view_details"
                         android:layout_width="match_parent"
                         android:layout_height="136dp"
                         android:background="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
 
-                        android:padding="20dp"
                         android:maxLines="10"
-
-
+                        android:padding="20dp"
 
 
                         />
 
                 </com.google.android.material.card.MaterialCardView>
-
 
 
             </LinearLayout>
@@ -263,37 +395,37 @@
                     android:id="@+id/upload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="40dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
                     android:gravity="right"
                     android:text="@string/madia"
                     android:textColor="@color/black"
 
-                    android:textSize="30sp"  />
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:id="@+id/add_event_LRT_upload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginRight="40dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/upload"
+                    android:layout_marginRight="40dp"
+
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingBottom="30dp"
+
 
 
                     >
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/show_event_RYC_all_media"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
                 </LinearLayout>
@@ -307,12 +439,12 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+
+                android:padding="10dp"
                 android:shadowRadius="2"
                 android:text="@string/close"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:padding="10dp"
                 android:textStyle="bold"
                 app:strokeColor="@color/color_for_login_fields"
                 app:strokeWidth="2dp" />

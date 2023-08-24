@@ -135,7 +135,7 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
             marker.setTag(result); // Set the search result as the marker's tag
             searchResultMarkers.add(marker);
             searchResultMarker = mMap.addMarker(markerOptions);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 20.0f));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 40.0f));
 
 
         }
@@ -226,8 +226,7 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
             Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(
                             -30 + 10 * Math.sin(i * Math.PI / (numMarkersInRainbow - 1)),
-                            135 - 10 * Math.cos(i * Math.PI / (numMarkersInRainbow - 1))))
-                    .title("Marker " + i)
+                            135 - 10 * Math.cos(i * Math.PI / (numMarkersInRainbow - 1)))).title("Marker " + i)
                     .icon(BitmapDescriptorFactory.defaultMarker(i * 360 / numMarkersInRainbow))
                     .rotation(rotation));
             mMarkerRainbow.add(marker);
