@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -133,6 +134,11 @@ public class ShowEventFragment extends Fragment {
             public void onClick(View v) {
 
              //   navController.navigate(R.id.action_showEventFragment_to_homeScreenFragment);
+                Boolean bolean1= navController.popBackStack();
+
+
+                Log.d("ptt",bolean1.toString());
+
 
          navController.popBackStack("@id/homeScreenFragment",true);
 
