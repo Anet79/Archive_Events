@@ -10,12 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.anet.archiveevents.EventItemClicked;
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.adapters.EventsAdapter;
 import com.anet.archiveevents.adapters.PagerAdapterFoeDairyEvents;
@@ -58,6 +60,16 @@ public class DairyEventsMyEventsFragment extends Fragment {
 //                eventsAdapter.notifyDataSetChanged();
             }
 
+
+        });
+        eventsAdapter.setEventClickListener(new EventItemClicked() {
+            @Override
+            public void eventClicked(Event event, int position) {
+                dairyEventViewModel.setCurrentEventToDataManager(event.getEventUID());
+                Navigation.findNavController(view).navigate(R.id.showEventFragment);
+
+
+            }
 
         });
 

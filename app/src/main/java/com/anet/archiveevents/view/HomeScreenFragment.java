@@ -273,6 +273,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
+        if(marker!=null)
+            marker.remove();
+
+
 
         // Add lots of markers to the map.
         addMarkersToMap();
@@ -317,7 +321,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
     private void addMarkersToMap() {
 
-        marker.remove();
+       // marker.remove();
 
 
 
@@ -392,7 +396,9 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         search_view.setVisibility(View.INVISIBLE);
         location_home_screen.setVisibility(View.INVISIBLE);
         bottom_navigation.setVisibility(View.INVISIBLE);
-        fragmentTransaction.addToBackStack("@id/homeScreenFragment");
+        navController.navigate(R.id.homeScreenFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
 
 

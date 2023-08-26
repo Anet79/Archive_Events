@@ -27,9 +27,9 @@ public class SearchOnTheMapRepository {
     public SearchOnTheMapRepository() {
         eventsSearch = new MutableLiveData<>();
         dataManager = DataManager.getInstance();
-
-        haveItemInList = new MutableLiveData<>();
         allEventsSearch=new ArrayList<>();
+        haveItemInList = new MutableLiveData<>();
+
 
         if(allEventsSearch.isEmpty()){
             haveItemInList.postValue(false);
@@ -61,6 +61,7 @@ public class SearchOnTheMapRepository {
 
 
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
+                    allEventsSearch=new ArrayList<>();
                     Event event=dataSnapshot1.getValue(Event.class);
                     if(event.getTitle().equalsIgnoreCase(newQuery)){
                         //Log.d("ptt ","yuval" +"/n"+event.toString() );

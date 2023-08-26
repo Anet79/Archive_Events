@@ -106,8 +106,8 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             this.report_page_created_date=eventView.findViewById(R.id.report_page_created_date);
             this.report_page_report_header= eventView.findViewById(R.id.report_page_report_header);
             this.report_page_content_event= eventView.findViewById(R.id.report_page_content_event);
-            this.report_page_name= eventView.findViewById(R.id.report_page_name);
-            this.report_page_IMG_user= eventView.findViewById(R.id.report_page_IMG_user);
+//            this.report_page_name= eventView.findViewById(R.id.report_page_name);
+//            this.report_page_IMG_user= eventView.findViewById(R.id.report_page_IMG_user);
 
             eventView.setOnClickListener(new View.OnClickListener() {
                 @Override
