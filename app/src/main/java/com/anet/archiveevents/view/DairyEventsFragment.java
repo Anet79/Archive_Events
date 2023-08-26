@@ -57,7 +57,7 @@ public class DairyEventsFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("כל האירועים"));
         tabLayout.addTab(tabLayout.newTab().setText("האירועים שלי"));
         // Set TabLayout mode
-        tabLayout.setTabMode(TabLayout.MODE_FIXED); // or MODE_FIXED
+        tabLayout.setTabMode(TabLayout.MODE_AUTO); // or MODE_FIXED
 
         // tabLayout.addTab(tabLayout.newTab().setText("My Favorite Events"));
        // tabLayout.setTabGravity(TabLayout.GRAVITY_START);

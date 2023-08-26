@@ -2,6 +2,7 @@ package com.anet.archiveevents.adapters;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anet.archiveevents.EventItemClicked;
+import com.anet.archiveevents.Keys;
 import com.anet.archiveevents.R;
 import com.anet.archiveevents.firebase.DataManager;
 import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.view.DairyEventFragment;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +77,40 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         listViewHolder.report_page_created_date.setText(String.format("%s",event.getEventDate()));
         listViewHolder.report_page_report_header.setText(String.format("%s",event.getTitle()));
         listViewHolder.report_page_content_event.setText(String.format("%s",event.getContent()));
+
+        ArrayList<StorageReference> picUri= new ArrayList<>();
+
+        StorageReference listRef = dataManager.getStorage().getReference().child("picturs/");
+
+        listRef.listAll()
+                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @Override
+                    public void onSuccess(ListResult listResult) {
+
+
+                        for (StorageReference item : listResult.getItems()) {
+                          picUri.add(item);
+
+                         Task<Uri> uri = item.getDownloadUrl();
+
+                         Log.d("ptt",uri.toString());
+
+
+
+
+
+
+
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
+
 
 
         Uri myUri = Uri.parse(dataManager.getCurrentUser().getProfileImgUrl());
