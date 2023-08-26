@@ -60,8 +60,9 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         GoogleMap.OnInfoWindowCloseListener, GoogleMap.OnMarkerClickListener {
     private BottomNavigationView bottom_navigation;
     private final List<Marker> mMarkerRainbow = new ArrayList<Marker>();
-
     private NavController navController;
+    private Marker marker;
+
     private LandMark newOne;
     private RecyclerView news_page_RECYC_reports_2;
     private ArrayList<Marker> searchResultMarkers;
@@ -316,6 +317,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
     private void addMarkersToMap() {
 
+        marker.remove();
+
+
+
         for (int i = 0; i < eventsToShow.size(); i++) {
 
             LatLng eventLocation = new LatLng(eventsToShow.get(i).getLandMark().getLatitude(), (eventsToShow.get(i).getLandMark().getLongitude()));
@@ -328,7 +333,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
                     .snippet(eventsToShow.get(i).getEventDate());
 
 
-            Marker marker = mMap.addMarker(markerOptions);
+            marker = mMap.addMarker(markerOptions);
             marker.setTag(eventsToShow.get(i));
 
 

@@ -115,31 +115,31 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
         return rootView;
     }
 
-    private void updateUI(ArrayList<Event> searchResults) {
-
-        // searchResultMarkers=new ArrayList<>();
-        for (Marker marker : searchResultMarkers) {
-            marker.remove();
-        }
-
-
-        for (Event result : eventsToShow) {
-
-            LatLng eventLocation = new LatLng(result.getLandMark().getLatitude(), (result.getLandMark().getLongitude()));
-            MarkerOptions markerOptions = new MarkerOptions()
-                    .position(eventLocation)
-                    .title(result.getTitle());
-
-            Marker marker = mMap.addMarker(markerOptions);
-            marker.setTag(result); // Set the search result as the marker's tag
-            searchResultMarkers.add(marker);
-            searchResultMarker = mMap.addMarker(markerOptions);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 40.0f));
-
-
-        }
-
-    }
+//    private void updateUI(ArrayList<Event> searchResults) {
+//
+//        // searchResultMarkers=new ArrayList<>();
+//        for (Marker marker : searchResultMarkers) {
+//            marker.remove();
+//        }
+//
+//
+//        for (Event result : eventsToShow) {
+//
+//            LatLng eventLocation = new LatLng(result.getLandMark().getLatitude(), (result.getLandMark().getLongitude()));
+//            MarkerOptions markerOptions = new MarkerOptions()
+//                    .position(eventLocation)
+//                    .title(result.getTitle());
+//
+//            Marker marker = mMap.addMarker(markerOptions);
+//            marker.setTag(result); // Set the search result as the marker's tag
+//            searchResultMarkers.add(marker);
+//            searchResultMarker = mMap.addMarker(markerOptions);
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 40.0f));
+//
+//
+//        }
+//
+//    }
 
 
     @Override
@@ -182,9 +182,9 @@ public class SearchOnTheMapFragment extends Fragment implements OnMapReadyCallba
 
     private void addMarkersToMap() {
 
-//        for (Marker marker : searchResultMarkers) {
-//            marker.remove();
-//        }
+        for (Marker marker : searchResultMarkers) {
+            marker.remove();
+        }
 
         searchResultMarker.remove();
 
