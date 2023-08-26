@@ -392,8 +392,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         search_view.setVisibility(View.INVISIBLE);
         location_home_screen.setVisibility(View.INVISIBLE);
         bottom_navigation.setVisibility(View.INVISIBLE);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction.addToBackStack("@id/homeScreenFragment");
 
 
 
