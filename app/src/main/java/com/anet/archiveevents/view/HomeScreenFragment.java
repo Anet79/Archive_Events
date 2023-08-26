@@ -307,7 +307,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         // Set the onMarkerClickListener
         mMap.setOnMarkerClickListener(this);
 
-        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(getActivity(),3));
         news_page_RECYC_reports_2.setHasFixedSize(true);
         news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
         news_page_RECYC_reports_2.setAdapter(eventsAdapter);
