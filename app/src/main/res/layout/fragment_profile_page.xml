@@ -8,14 +8,19 @@
     android:supportsRtl="true"
     tools:context=".view.ProfilePageFragment"
     tools:ignore="RtlEnabled">
+
     <LinearLayout
         android:id="@+id/add_event_LRT_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="#00000000"
+        android:orientation="horizontal"
         android:padding="5dp"
-        android:background="@color/stroke_color_for_profile"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
 
         <ImageButton
@@ -30,9 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/profile_title"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textSize="35sp"
-            android:textStyle="bold"
-            android:textAppearance="?android:textAppearanceMedium"/>
+            android:textStyle="bold" />
 
 
     </LinearLayout>
