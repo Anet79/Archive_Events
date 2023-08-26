@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -40,6 +40,7 @@
                     android:id="@+id/report_page_created_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_weight="1"
                     android:text="dd-mm-yyyy" />
 
@@ -48,6 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/black"
                     android:text="@string/category" />
 
 
@@ -59,6 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="@string/report_header"
+                android:textColor="@color/stroke_color_for_profile"
+                android:textStyle="bold"
                 android:layout_marginEnd="4dp"
                 android:textSize="23sp" />
 
@@ -66,57 +70,58 @@
                 android:id="@+id/report_page_content_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_gravity="end"
                 android:layout_marginEnd="5dp"
 
                 android:text="@string/content_event"
 
 
-                android:textSize="20sp" />
+                android:textSize="12sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="horizontal"-->
 
-                >
+<!--                >-->
 
-                <TextView
-                    android:id="@+id/report_page_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+<!--                <TextView-->
+<!--                    android:id="@+id/report_page_name"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="4dp"-->
 
-                    android:text="@string/name"
+<!--                    android:text="@string/name"-->
 
-                    android:textAlignment="viewStart"
-                    android:textSize="15sp"
-
-
-                    />
-
-                <FrameLayout
-                    android:id="@+id/profile_FRM_nav"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/report_page_IMG_user"
-                        android:layout_width="25dp"
-                        android:layout_height="22dp"
-                        android:layout_marginStart="4dp"
-
-                        android:layout_marginBottom="5dp"
-                        android:focusable="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_user"
-                        app:civ_border_color="@color/stroke_color_for_profile"
-                        app:civ_border_width="2dp" />
-                </FrameLayout>
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:textSize="15sp"-->
 
 
-            </LinearLayout>
+<!--                    />-->
+
+<!--                <FrameLayout-->
+<!--                    android:id="@+id/profile_FRM_nav"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                        android:id="@+id/report_page_IMG_user"-->
+<!--                        android:layout_width="25dp"-->
+<!--                        android:layout_height="22dp"-->
+<!--                        android:layout_marginStart="4dp"-->
+
+<!--                        android:layout_marginBottom="5dp"-->
+<!--                        android:focusable="true"-->
+<!--                        android:scaleType="centerCrop"-->
+<!--                        android:src="@drawable/ic_user"-->
+<!--                        app:civ_border_color="@color/stroke_color_for_profile"-->
+<!--                        app:civ_border_width="2dp" />-->
+<!--                </FrameLayout>-->
+
+
+<!--            </LinearLayout>-->
 
 
         </LinearLayout>

@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -59,21 +61,15 @@ public class ShowEventFragment extends Fragment {
     private ImageButton show_event_back_button;
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
-
-
-        showEventViewModel=  new ViewModelProvider(this).get(ShowEventViewModel.class);
+        showEventViewModel = new ViewModelProvider(this).get(ShowEventViewModel.class);
         showEventViewModel.getGetSpecificEvent().observe(this, new Observer<Event>() {
             @Override
             public void onChanged(Event event) {
-
 
 
                 show_event_view_category.setText(event.getCategory());
@@ -81,8 +77,6 @@ public class ShowEventFragment extends Fragment {
                 show_event_view_details.setText(event.getContent());
                 show_event_view_location.setText(event.getLandMark().toString());
                 show_event_view_title.setText(event.getTitle());
-
-
 
 
                 mediaAdapter.setMedia(event.getListOfMedia());
@@ -93,20 +87,18 @@ public class ShowEventFragment extends Fragment {
         });
 
 
-
-
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
 
 
+        navController = Navigation.findNavController(view);
+        mediaAdapter = new MediaAdapter();
 
-        navController= Navigation.findNavController(view);
-        mediaAdapter=new MediaAdapter();
-
-        mediaAdapter=new MediaAdapter();
+        mediaAdapter = new MediaAdapter();
         show_event_RYC_all_media.setLayoutManager(new LinearLayoutManager(getContext()));
         show_event_RYC_all_media.setHasFixedSize(true);
         show_event_RYC_all_media.setItemAnimator(new DefaultItemAnimator());
@@ -115,15 +107,14 @@ public class ShowEventFragment extends Fragment {
         mediaAdapter.setEventClickListener(new MediaItemClicked() {
             @Override
             public void mediaClicked(String media, int position) {
-                ContentResolver contentResolver= getContext().getContentResolver();
-                MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-                String type=mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(Uri.parse(media)));
-                Intent intent=new Intent(Intent.ACTION_VIEW);
-                    intent.setType("*/*");
-                    intent.setData(Uri.parse(media));
-                    startActivity(intent);
-                }
-
+                ContentResolver contentResolver = getContext().getContentResolver();
+                MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+                String type = mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(Uri.parse(media)));
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType("*/*");
+                intent.setData(Uri.parse(media));
+                startActivity(intent);
+            }
 
 
         });
@@ -133,15 +124,8 @@ public class ShowEventFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-             //   navController.navigate(R.id.action_showEventFragment_to_homeScreenFragment);
-                Boolean bolean1= navController.popBackStack();
 
-
-                Log.d("ptt",bolean1.toString());
-
-
-         navController.popBackStack("@id/homeScreenFragment",true);
-
+                navController.popBackStack();
 
 
             }
@@ -151,31 +135,27 @@ public class ShowEventFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //NavOptions navOptions= new NavOptions.Builder().setPopUpTo(navController.navigate(R.id.action_showEventFragment_to_homeScreenFragment));
-                navController.popBackStack();
 
+                navController.popBackStack();
 
 
             }
         });
 
 
-
     }
 
 
-
-
     private void findViews(View view) {
-        show_event_view_location=view.findViewById(R.id.show_event_view_location);
-        show_event_view_category=view.findViewById(R.id.show_event_view_category);
-        show_event_view_area=view.findViewById(R.id.show_event_view_area);
-        show_event_view_details=view.findViewById(R.id.show_event_view_details);
-        show_event_view_title=view.findViewById(R.id.show_event_view_title);
-        show_event_view_BTN_close=view.findViewById(R.id.show_event_view_BTN_close);
-        show_event_back_button=view.findViewById(R.id.show_event_back_button);
+        show_event_view_location = view.findViewById(R.id.show_event_view_location);
+        show_event_view_category = view.findViewById(R.id.show_event_view_category);
+        show_event_view_area = view.findViewById(R.id.show_event_view_area);
+        show_event_view_details = view.findViewById(R.id.show_event_view_details);
+        show_event_view_title = view.findViewById(R.id.show_event_view_title);
+        show_event_view_BTN_close = view.findViewById(R.id.show_event_view_BTN_close);
+        show_event_back_button = view.findViewById(R.id.show_event_back_button);
         navController = Navigation.findNavController(view);
-        show_event_RYC_all_media= view.findViewById(R.id.show_event_RYC_all_media);
+        show_event_RYC_all_media = view.findViewById(R.id.show_event_RYC_all_media);
 
     }
 
@@ -184,7 +164,7 @@ public class ShowEventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v= inflater.inflate(R.layout.fragment_show_event, container, false);
+        View v = inflater.inflate(R.layout.fragment_show_event, container, false);
 
         // Inflate the layout for this fragment
         return v;

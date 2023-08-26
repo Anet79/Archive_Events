@@ -87,11 +87,16 @@ public class SignInFragment extends Fragment {
                 if (!email.isEmpty()&& !pass.isEmpty()){
                     authViewModel.signIn(email,pass);
 
+
+
                   // Log.d("details", String.valueOf(userDetailsForSignupViewModel.getAddUserStatus().getValue())) ;
                 }
 
+
             }
+
         });
+
     }
 
 
