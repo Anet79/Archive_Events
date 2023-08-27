@@ -78,7 +78,7 @@ public class AddEventFragment extends Fragment {
     private LinearLayout add_event_LRT_upload;
   //  private static final int REQUEST_CODE_PICK_VIDEO = 1;
     private static final int READ_EXTERNAL_STORAGE = 1;
-    private LandMark newOne;
+    private LandMark newOne = new LandMark(0,0);;
     private static final int REQUEST_CODE_PERMISSION = 2;
    private static final int PICK_IMAGE_MULTIPLE = 1;
     private static final int FILE_PICKER_REQUEST_CODE = 1;
@@ -140,6 +140,8 @@ public class AddEventFragment extends Fragment {
 
 
                 if(!content.isEmpty()&&!title.isEmpty()&&!category.isEmpty()){
+
+
 
                     addEventViewModel.saveEvent(title,category,newOne,content,area);
                     addEventViewModel.getAddCompleteEventMutableLiveData().observe(getActivity(), new Observer<Boolean>() {

@@ -138,44 +138,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
             }
         });
 
-//        dairyEventViewModel.getHaveItemInList().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-//            @Override
-//            public void onChanged(Boolean aBoolean) {
-//                if (aBoolean) {
-//
-//                    // news_page_RECYC_reports_2= view.findViewById(R.id.news_page_RECYC_reports_2);
-//                    eventsAdapter = new MapEventsAdapter();
-//                    eventsAdapter.setEvents(dairyEventViewModel.getAllEventsSearchData().getValue());
-//
-//                    //eventsAdapter= dairyEventViewModel.getMapEventsAdapter();
-//                    news_page_RECYC_reports_2.setLayoutManager(new LinearLayoutManager(getContext()));
-//                    news_page_RECYC_reports_2.setHasFixedSize(true);
-//                    news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
-//                    news_page_RECYC_reports_2.setAdapter(eventsAdapter);
-//                }
-//
-//            }
-//        });
 
-        //navController = Navigation.findNavController(requireActivity(), R.id.action_dairyEventFragment_to_showEventFragment);
-
-//        NavHostFragment navHostFragment =
-//                (NavHostFragment) getParentFragmentManager().findFragmentById(R.id.nav_host_fragment);
-//        NavController navController = navHostFragment.getNavController();
-
-        // navController=Navigation.findNavController(view);
-
-
-//        eventsAdapter.setEventsClickListener(new EventItemClicked() {
-//            @Override
-//            public void eventClicked(Event event, int position) {
-//                dairyEventViewModel.setCurrentEventToDataManager(event.getEventUID());
-//               // Navigation.findNavController(view).navigate(R.id.showEventFragment);
-//                navController.navigate(R.id.action_dairyEventFragment_to_showEventFragment);
-//
-//            }
-//
-//        });
 
         initButtons();
 
@@ -307,7 +270,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         // Set the onMarkerClickListener
         mMap.setOnMarkerClickListener(this);
 
-        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(requireContext(),3));
         news_page_RECYC_reports_2.setHasFixedSize(true);
         news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
         news_page_RECYC_reports_2.setAdapter(eventsAdapter);
@@ -317,7 +280,9 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
     private void addMarkersToMap() {
 
-        //marker.remove();
+       if(marker!=null){
+           marker.remove();
+       }
 
 
 
@@ -392,8 +357,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         search_view.setVisibility(View.INVISIBLE);
         location_home_screen.setVisibility(View.INVISIBLE);
         bottom_navigation.setVisibility(View.INVISIBLE);
-        fragmentTransaction.addToBackStack("@id/homeScreenFragment");
 
+        navController.navigate(R.id.homeScreenFragment);
+        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        //fragmentTransaction.addToBackStack(null);
 
 
         Toast.makeText(requireContext(), "Click Info Window", Toast.LENGTH_SHORT).show();

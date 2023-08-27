@@ -21,13 +21,13 @@ public class Event {
     private String eventUID;
     private String creatorUID;
     private String area;
-    private String eventImage;
+    //private String eventImage;
     private String eventDate;
 
 
     public Event() {}
 
-    public Event(String creatorUID, String category, String title, LandMark landMark, String content, ArrayList<String> listOfMedia, String area,String eventImage) {
+    public Event(String creatorUID, String category, String title, LandMark landMark, String content, ArrayList<String> listOfMedia, String area/*,String eventImage*/) {
         this.eventUID= UUID.randomUUID().toString();
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -40,7 +40,7 @@ public class Event {
         this.listOfMedia = listOfMedia;
         this.creatorUID= creatorUID;
         this.area=area;
-        this.eventImage= eventImage;
+        //this.eventImage= eventImage;
 
     }
 
@@ -119,13 +119,13 @@ public class Event {
     }
 
 
-    public String getEventImage() {
+ /*   public String getEventImage() {
         return eventImage;
     }
 
     public void setEventImage(String eventImage) {
         this.eventImage = eventImage;
-    }
+    }*/
 
     @Override
     public String toString() {

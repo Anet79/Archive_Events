@@ -38,7 +38,7 @@ public class AddEventRepository {
     private ArrayList<String> allMediaArrayList;
 
     private DataManager dataManager;
-    private Uri myUri;
+    private MutableLiveData<Uri>  myUri;
     private MutableLiveData<Boolean> eventAdded;
 
 
@@ -55,6 +55,8 @@ public class AddEventRepository {
         dataManager = DataManager.getInstance();
         addCompleteEventMutableLiveData = new MutableLiveData<>();
         eventAdded = new MutableLiveData<>();
+        /*myUri.postValue(null);
+        setImageForEvent();*/
 
 
     }
@@ -129,7 +131,7 @@ public class AddEventRepository {
         }
     }
 
-    public String setImageForEvent() {
+    public void setImageForEvent() {
 
         StorageReference listRef = dataManager.getStorage().getReference().child("picturs/");
 
@@ -155,11 +157,8 @@ public class AddEventRepository {
                         int index = (int) (Math.random() * picUri.size());
 
 
-                        myUri = Uri.parse(picUri.get(index));
-                        // listViewHolder.content_report_IMG_image_report.setImageURI(myUri);
+                        myUri.setValue(Uri.parse(picUri.get(index)));
 
-
-                        // Log.d("ptt",String.valueOf(item.getDownloadUrl().getResult()));
 
 
                     }
@@ -172,7 +171,6 @@ public class AddEventRepository {
                 });
 
 
-        return myUri.toString();
     }
 
     public void saveEvent(String title, String category, LandMark landMark, String content, String area) {
@@ -180,10 +178,9 @@ public class AddEventRepository {
         DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         DatabaseReference myRef01 = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_FOR_LAND_MARKS);
         StorageReference reference = FirebaseStorage.getInstance().getReference("Files/" + System.currentTimeMillis());
-        String uriImage = setImageForEvent();
 
         // if(addEventMutableLiveData.getValue()==true) {
-        Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allMediaArrayList, area, uriImage);
+        Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allMediaArrayList, area);
         myRef.child(newEvent.getEventUID()).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -75,6 +75,7 @@ public class ShowEventFragment extends Fragment {
                 show_event_view_category.setText(event.getCategory());
                 show_event_view_area.setText(event.getArea());
                 show_event_view_details.setText(event.getContent());
+
                 show_event_view_location.setText(event.getLandMark().toString());
                 show_event_view_title.setText(event.getTitle());
 

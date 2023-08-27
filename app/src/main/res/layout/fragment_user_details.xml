@@ -138,8 +138,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-@."
-                        android:inputType="textFilter|textVisiblePassword|textNoSuggestions|textEmailAddress" />
+                        android:inputType="textFilter|textVisiblePassword|textNoSuggestions|textEmailAddress|text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
