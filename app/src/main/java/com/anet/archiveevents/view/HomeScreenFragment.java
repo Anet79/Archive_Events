@@ -354,15 +354,15 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.map, fragment);
+        navController.navigate(R.id.showEventFragment);
         search_view.setVisibility(View.INVISIBLE);
         location_home_screen.setVisibility(View.INVISIBLE);
         bottom_navigation.setVisibility(View.INVISIBLE);
 
-        navController.navigate(R.id.homeScreenFragment);
         //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         //fragmentTransaction.addToBackStack(null);
-
+        navController.navigate(R.id.homeScreenFragment);
 
         Toast.makeText(requireContext(), "Click Info Window", Toast.LENGTH_SHORT).show();
     }
