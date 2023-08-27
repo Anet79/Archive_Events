@@ -2,11 +2,8 @@ package com.anet.archiveevents.firebase;
 
 import android.app.Application;
 import android.net.Uri;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.anet.archiveevents.Keys;
@@ -20,16 +17,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class AddEventRepository {
     private Application application;
@@ -37,13 +32,13 @@ public class AddEventRepository {
     private MutableLiveData<Boolean> addEventMutableLiveData;
     private MutableLiveData<Boolean> addCompleteEventMutableLiveData;
     private FirebaseStorage storage;
-    private List< String> allEventMedia;
+    private List<String> allEventMedia;
 
     private GpsTracker gpsService;
-    private ArrayList<String>allMediaArrayList;
+    private ArrayList<String> allMediaArrayList;
 
     private DataManager dataManager;
-
+    private Uri myUri;
     private MutableLiveData<Boolean> eventAdded;
 
 
@@ -55,10 +50,10 @@ public class AddEventRepository {
 
         dataManager = DataManager.getInstance();
         addCompleteEventMutableLiveData = new MutableLiveData<>();
-        allMediaArrayList=new ArrayList<>();
+        allMediaArrayList = new ArrayList<>();
 
-        dataManager= DataManager.getInstance();
-        addCompleteEventMutableLiveData=new MutableLiveData<>();
+        dataManager = DataManager.getInstance();
+        addCompleteEventMutableLiveData = new MutableLiveData<>();
         eventAdded = new MutableLiveData<>();
 
 
@@ -107,7 +102,7 @@ public class AddEventRepository {
                         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("media");
                         HashMap<String, String> map = new HashMap<>();
                         map.put("videolink", downloadUri);
-                       // allEventMedia.put("media", downloadUri);
+                        // allEventMedia.put("media", downloadUri);
                         reference1.child("" + System.currentTimeMillis()).setValue(map);
                         addEventMutableLiveData.setValue(true);
 
@@ -134,19 +129,64 @@ public class AddEventRepository {
         }
     }
 
+    public String setImageForEvent() {
+
+        StorageReference listRef = dataManager.getStorage().getReference().child("picturs/");
+
+        listRef.listAll()
+                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @Override
+                    public void onSuccess(ListResult listResult) {
+                        ArrayList<String> picUri = new ArrayList<>();
+
+                        for (StorageReference item : listResult.getItems()) {
+
+                            //  picUri.add(item.getDownloadUrl().getResult());
+                            Task<Uri> uriTask = item.getDownloadUrl();
+                            while (!uriTask.isSuccessful()) ;
+
+                            String downloadUri = uriTask.getResult().toString();
+
+
+                            picUri.add(downloadUri);
+
+                        }
+                        // generating the index using Math.random()
+                        int index = (int) (Math.random() * picUri.size());
+
+
+                        myUri = Uri.parse(picUri.get(index));
+                        // listViewHolder.content_report_IMG_image_report.setImageURI(myUri);
+
+
+                        // Log.d("ptt",String.valueOf(item.getDownloadUrl().getResult()));
+
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
+
+
+        return myUri.toString();
+    }
+
     public void saveEvent(String title, String category, LandMark landMark, String content, String area) {
 
         DatabaseReference myRef = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_EVENTS);
         DatabaseReference myRef01 = dataManager.getRealTimeDB().getReference(Keys.KEY_LIST_FOR_LAND_MARKS);
-        StorageReference reference = FirebaseStorage.getInstance().getReference("Files/" + System.currentTimeMillis() );
-
+        StorageReference reference = FirebaseStorage.getInstance().getReference("Files/" + System.currentTimeMillis());
+        String uriImage = setImageForEvent();
 
         // if(addEventMutableLiveData.getValue()==true) {
-        Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allMediaArrayList, area);
+        Event newEvent = new Event(dataManager.getCurrentUser().getUID(), category, title, landMark, content, allMediaArrayList, area, uriImage);
         myRef.child(newEvent.getEventUID()).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
 
 
                 addCompleteEventMutableLiveData.setValue(true);
@@ -184,7 +224,7 @@ public class AddEventRepository {
             int counter = 0;
             // final String firebasePushID = firestore.collection(currentUser.getUid()).document().getId();
             for (int i = 0; i < list.size(); i++) {
-                StorageReference videoRef1 = videoRef.child(i+"23");
+                StorageReference videoRef1 = videoRef.child(i + "23");
 
                 Uri perFile = list.get(i);
                 counter++;
@@ -213,9 +253,7 @@ public class AddEventRepository {
                                 }
                             });
 
-                        }
-
-                        else {
+                        } else {
 //                            spotDialog.dismiss();
 //                            Log.e(LOGCODE, Objects.requireNonNull(task.getException()).getMessage());
 //                            Toast.makeText(AddTransaction.this, "Couldn't upload file ", Toast.LENGTH_SHORT).show();

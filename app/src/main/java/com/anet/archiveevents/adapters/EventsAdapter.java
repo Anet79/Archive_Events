@@ -18,6 +18,7 @@ import com.anet.archiveevents.R;
 import com.anet.archiveevents.firebase.DataManager;
 import com.anet.archiveevents.objects.Event;
 import com.anet.archiveevents.view.DairyEventFragment;
+import com.anet.archiveevents.view.ProfilePageFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,27 +74,13 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ListViewHolder listViewHolder = (ListViewHolder) holder;
         Event event = getEvent(position);
 
+
+
         listViewHolder.report_page_category.setText(String.format("%s",event.getCategory()));
         listViewHolder.report_page_created_date.setText(String.format("%s",event.getEventDate()));
         listViewHolder.report_page_report_header.setText(String.format("%s",event.getTitle()));
         listViewHolder.report_page_content_event.setText(String.format("%s",event.getContent()));
 
-        ArrayList<StorageReference> picUri= new ArrayList<>();
-
-        StorageReference listRef = dataManager.getStorage().getReference().child("picturs/");
-
-        listRef.listAll()
-                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                    @Override
-                    public void onSuccess(ListResult listResult) {
-
-
-                        for (StorageReference item : listResult.getItems()) {
-                          picUri.add(item);
-
-                         Task<Uri> uri = item.getDownloadUrl();
-
-                         Log.d("ptt",uri.toString());
 
 
 
@@ -101,18 +88,14 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
 
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Uh-oh, an error occurred!
-                    }
-                });
-
-
-
+//        for (int i = 0; i < picUri.size(); i++)
+//        {
+//            // generating the index using Math.random()
+//            int index = (int)(Math.random() * my_list.size());
+//
+//            System.out.println("Random Element is :"
+//                    + my_list.get(index));
+//        }
         Uri myUri = Uri.parse(dataManager.getCurrentUser().getProfileImgUrl());
 //        Glide.with(this.)
 //                .load(myUri)
@@ -139,7 +122,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         public TextView report_page_content_event;
         public TextView report_page_name;
         public TextView report_page_created_date;
-        public  ImageView report_page_IMG_user;
+        public  ImageView content_report_IMG_image_report;
 
 
 
@@ -150,7 +133,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             this.report_page_report_header= eventView.findViewById(R.id.report_page_report_header);
             this.report_page_content_event= eventView.findViewById(R.id.report_page_content_event);
 //            this.report_page_name= eventView.findViewById(R.id.report_page_name);
-//            this.report_page_IMG_user= eventView.findViewById(R.id.report_page_IMG_user);
+           this.content_report_IMG_image_report= eventView.findViewById(R.id.content_report_IMG_image_report);
 
             eventView.setOnClickListener(new View.OnClickListener() {
                 @Override

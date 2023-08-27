@@ -317,7 +317,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
     private void addMarkersToMap() {
 
-        marker.remove();
+        //marker.remove();
 
 
 
