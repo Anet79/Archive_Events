@@ -359,12 +359,12 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         location_home_screen.setVisibility(View.INVISIBLE);
         bottom_navigation.setVisibility(View.INVISIBLE);
 
-        //fragmentTransaction.addToBackStack(null);
+
+
         fragmentTransaction.commit();
         //fragmentTransaction.addToBackStack(null);
         navController.navigate(R.id.homeScreenFragment);
-
-        Toast.makeText(requireContext(), "Click Info Window", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(requireContext(), "Click Info Window", Toast.LENGTH_SHORT).show();
     }
 
     @Override

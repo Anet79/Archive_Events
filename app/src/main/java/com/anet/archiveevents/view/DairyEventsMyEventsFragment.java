@@ -82,7 +82,7 @@ public class DairyEventsMyEventsFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_dairy_events_my_events, container, false);
         findViews(view);
         eventsAdapter= new EventsAdapter();
-        news_page_RECYC_reports.setLayoutManager(new GridLayoutManager(this.getContext(),3));
+        news_page_RECYC_reports.setLayoutManager(new GridLayoutManager(this.getContext(),4));
         news_page_RECYC_reports.setHasFixedSize(true);
         news_page_RECYC_reports.setItemAnimator(new DefaultItemAnimator());
 

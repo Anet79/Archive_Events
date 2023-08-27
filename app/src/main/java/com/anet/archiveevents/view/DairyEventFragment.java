@@ -66,7 +66,7 @@ public class DairyEventFragment extends Fragment  {
        // navController=Navigation.findNavController(view);
 
         eventsAdapter= new EventsAdapter();
-        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(this.getContext(),3));
+        news_page_RECYC_reports_2.setLayoutManager(new GridLayoutManager(this.getContext(),4));
         news_page_RECYC_reports_2.setHasFixedSize(true);
         news_page_RECYC_reports_2.setItemAnimator(new DefaultItemAnimator());
 
