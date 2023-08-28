@@ -18,6 +18,7 @@
 
         app:tabGravity="fill"
         app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorColor="@color/color_for_login_fields"
 
 
         app:tabIndicatorAnimationMode="elastic"

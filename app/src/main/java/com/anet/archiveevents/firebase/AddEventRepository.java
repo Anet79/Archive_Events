@@ -171,7 +171,7 @@ public class AddEventRepository {
                 });
 
 
-    }
+    };;
 
     public void saveEvent(String title, String category, LandMark landMark, String content, String area) {
 

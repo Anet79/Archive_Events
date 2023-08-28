@@ -34,10 +34,14 @@ import java.util.List;
 public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context activity;
     private ArrayList<Event> events ;
+    private int totalCountImage= 3;
     private EventItemClicked eventsClickListener;
+    public int[] imageViews= {
+        R.drawable.picture1,
+                R.drawable.picture2,
+            R.drawable.picture3
+    };
     private DataManager dataManager=DataManager.getInstance();
-
-
 
     public EventsAdapter() {
         this.events=new ArrayList<>();
@@ -74,12 +78,15 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ListViewHolder listViewHolder = (ListViewHolder) holder;
         Event event = getEvent(position);
 
+        int index = (int)(Math.random() * totalCountImage);
 
 
         listViewHolder.report_page_category.setText(String.format("%s",event.getCategory()));
         listViewHolder.report_page_created_date.setText(String.format("%s",event.getEventDate()));
         listViewHolder.report_page_report_header.setText(String.format("%s",event.getTitle()));
         listViewHolder.report_page_content_event.setText(String.format("%s",event.getContent()));
+
+        listViewHolder.content_report_IMG_image_report.setImageResource(imageViews[index]);
 
 
 

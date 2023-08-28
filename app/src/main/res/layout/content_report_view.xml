@@ -53,7 +53,13 @@
                     android:text="@string/category" />
 
 
+
+
             </LinearLayout>
+
+
+
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/report_page_report_header"
