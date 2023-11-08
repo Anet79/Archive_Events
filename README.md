@@ -1,6 +1,6 @@
 # Archive_Events
 
-
+Development An application using MVVM design patterns, and  serves as a military archive whose purpose is to store and retrieve military information such as photos, videos, articles, and more about past military and security events. The system supports data storage and retrieval using a search engine. The data is displayed on a geographical map, and the system user can view all the entered events, edit their own events, and upload new events. 
 
 
 
